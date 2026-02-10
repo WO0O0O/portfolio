@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name | Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&family=Roboto+Condensed:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo">Daniel Wooster</div>
+        <ul class="nav-links">
+          <li><a href="#hero" data-section="hero">HOME</a></li>
+          <li><a href="#about" data-section="about">ABOUT</a></li>
+          <li><a href="#skills" data-section="skills">THE BAND</a></li>
+          <li><a href="#projects" data-section="projects">DISCOGRAPHY</a></li>
+          <li>
+            <a href="#experience" data-section="experience">TOUR DATES</a>
+          </li>
+          <li><a href="#contact" data-section="contact">BOOKING</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section" data-bg-color="#e63946">
+      <div class="container">
+        <div class="hero-content">
+          <div class="label-number">BN 001</div>
+          <h1 class="hero-title">
+            <span class="title-line title-line-1">Daniel</span>
+            <span class="title-line title-line-2">Wooster</span>
+          </h1>
+          <div class="subtitle">
+            <span class="subtitle-ampersand">&</span>
+            <span class="subtitle-text">THE TECH ENSEMBLE</span>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-label">STEREO</span>
+            <span class="meta-separator">•</span>
+            <span class="meta-label">Data Scientist</span>
+            <span class="meta-separator">•</span>
+            <span class="meta-label">EST. 2004</span>
+          </div>
+        </div>
+        <div class="halftone-overlay"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section" data-bg-color="#1d3557">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <h2 class="section-title">ABOUT THE ARTIST</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p class="lead-text">
+              Like the great jazz innovators who pushed boundaries and created
+              new sounds, I approach technology with creativity and
+              improvisation.
+            </p>
+            <p>
+              Every project is a new composition, blending technical precision
+              with innovative thinking. I thrive in collaborative environments
+              where ideas flow freely and solutions emerge organically.
+            </p>
+            <p>
+              From the first line of code to the final deployment, I craft
+              digital experiences that resonate.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">YEARS IN THE STUDIO</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">20+</div>
+              <div class="stat-label">TRACKS RELEASED</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">∞</div>
+              <div class="stat-label">PROBLEMS SOLVED</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section" data-bg-color="#e63946">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <h2 class="section-title">THE BAND</h2>
+          <p class="section-subtitle">MEET THE INSTRUMENTS</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">🎹</div>
+            <h3 class="skill-name">PIANO</h3>
+            <p class="skill-description">JavaScript, TypeScript, Python</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎺</div>
+            <h3 class="skill-name">TRUMPET</h3>
+            <p class="skill-description">React, Next.js, Vue</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎷</div>
+            <h3 class="skill-name">SAXOPHONE</h3>
+            <p class="skill-description">Node.js, Express, FastAPI</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🥁</div>
+            <h3 class="skill-name">DRUMS</h3>
+            <p class="skill-description">PostgreSQL, MongoDB, Redis</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎸</div>
+            <h3 class="skill-name">BASS</h3>
+            <p class="skill-description">Docker, AWS, CI/CD</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎻</div>
+            <h3 class="skill-name">STRINGS</h3>
+            <p class="skill-description">Git, Agile, Testing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="section projects-section"
+      data-bg-color="#1d3557"
+    >
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">04</div>
+          <h2 class="section-title">DISCOGRAPHY</h2>
+          <p class="section-subtitle">GREATEST HITS</p>
+        </div>
+        <div class="albums-grid">
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="album-number">BN 4001</div>
+              <div class="album-title-cover">PROJECT ONE</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-name">Project Name</h3>
+              <p class="album-description">
+                A full-stack application that does amazing things. Built with
+                React and Node.js.
+              </p>
+              <div class="album-tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
+              <div class="album-links">
+                <a href="#" class="album-link">VIEW LIVE</a>
+                <a href="#" class="album-link">SOURCE CODE</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="album-number">BN 4002</div>
+              <div class="album-title-cover">PROJECT TWO</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-name">Another Project</h3>
+              <p class="album-description">
+                An innovative solution to a complex problem. Features real-time
+                updates and modern UI.
+              </p>
+              <div class="album-tags">
+                <span class="tag">TypeScript</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">Tailwind</span>
+              </div>
+              <div class="album-links">
+                <a href="#" class="album-link">VIEW LIVE</a>
+                <a href="#" class="album-link">SOURCE CODE</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="album-number">BN 4003</div>
+              <div class="album-title-cover">PROJECT THREE</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-name">Third Project</h3>
+              <p class="album-description">
+                A creative experiment pushing the boundaries of what's possible
+                on the web.
+              </p>
+              <div class="album-tags">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Docker</span>
+              </div>
+              <div class="album-links">
+                <a href="#" class="album-link">VIEW LIVE</a>
+                <a href="#" class="album-link">SOURCE CODE</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section
+      id="experience"
+      class="section experience-section"
+      data-bg-color="#e63946"
+    >
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">05</div>
+          <h2 class="section-title">TOUR DATES</h2>
+          <p class="section-subtitle">PAST & PRESENT GIGS</p>
+        </div>
+        <div class="tour-dates">
+          <div class="tour-date">
+            <div class="date-left">
+              <div class="date-year">2024</div>
+              <div class="date-duration">PRESENT</div>
+            </div>
+            <div class="date-right">
+              <h3 class="venue-name">COMPANY NAME</h3>
+              <div class="role-title">Senior Software Engineer</div>
+              <p class="role-description">
+                Leading development of scalable web applications. Mentoring
+                junior developers and architecting cloud solutions.
+              </p>
+              <div class="role-tags">
+                <span class="tag">React</span>
+                <span class="tag">AWS</span>
+                <span class="tag">Team Lead</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tour-date">
+            <div class="date-left">
+              <div class="date-year">2022</div>
+              <div class="date-duration">2024</div>
+            </div>
+            <div class="date-right">
+              <h3 class="venue-name">PREVIOUS COMPANY</h3>
+              <div class="role-title">Software Engineer</div>
+              <p class="role-description">
+                Built and maintained multiple client-facing applications.
+                Improved performance by 40% through optimization.
+              </p>
+              <div class="role-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tour-date">
+            <div class="date-left">
+              <div class="date-year">2020</div>
+              <div class="date-duration">2022</div>
+            </div>
+            <div class="date-right">
+              <h3 class="venue-name">FIRST COMPANY</h3>
+              <div class="role-title">Junior Developer</div>
+              <p class="role-description">
+                Started my professional journey building features and learning
+                from senior engineers.
+              </p>
+              <div class="role-tags">
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="section contact-section"
+      data-bg-color="#1d3557"
+    >
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">06</div>
+          <h2 class="section-title">BOOKING</h2>
+          <p class="section-subtitle">LET'S MAKE SOMETHING GREAT</p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <p class="contact-lead">
+              Available for freelance work, collaborations, and full-time
+              opportunities.
+            </p>
+            <div class="contact-methods">
+              <a href="mailto:your.email@example.com" class="contact-method">
+                <span class="method-label">EMAIL</span>
+                <span class="method-value">your.email@example.com</span>
+              </a>
+              <a
+                href="https://github.com/yourusername"
+                class="contact-method"
+                target="_blank"
+              >
+                <span class="method-label">GITHUB</span>
+                <span class="method-value">@yourusername</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/yourprofile"
+                class="contact-method"
+                target="_blank"
+              >
+                <span class="method-label">LINKEDIN</span>
+                <span class="method-value">/in/yourprofile</span>
+              </a>
+              <a
+                href="https://twitter.com/yourusername"
+                class="contact-method"
+                target="_blank"
+              >
+                <span class="method-label">TWITTER</span>
+                <span class="method-value">@yourusername</span>
+              </a>
+            </div>
+          </div>
+          <div class="contact-cta">
+            <div class="record-label">BLUE NOTE RECORDS</div>
+            <div class="catalog-number">BN 80915</div>
+            <div class="stereo-badge">STEREO</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Your Name. All rights reserved. Designed with jazz in
+          mind.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
