@@ -6,9 +6,9 @@
 }
 
 :root {
-  --red: #e63946;
+  --red: #c8102e;
   --black: #0d0d0d;
-  --dark-blue: #1d3557;
+  --dark-blue: #132a43;
   --cream: #f1faee;
   --off-white: #e8e8e8;
   --transition-speed: 1.2s;
@@ -43,7 +43,6 @@ body {
   background: rgba(13, 13, 13, 0.95);
   backdrop-filter: blur(10px);
   padding: 1.5rem 0;
-  border-bottom: 3px solid var(--red);
 }
 
 .nav-content {
@@ -348,70 +347,125 @@ body {
   border-bottom-color: var(--red);
 }
 
-/* === SKILLS SECTION === */
+/* === SKILLS SECTION (PIANO KEYS) === */
 .skills-section {
   background: var(--red);
   color: var(--black);
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+.piano-keyboard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.skill-card {
+.piano-key {
+  flex: 1;
+  min-width: 80px;
+  height: 480px;
   background: var(--black);
-  color: var(--cream);
-  padding: 2.5rem 2rem;
-  border-radius: 4px;
-  text-align: center;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  transform: scale(0.9);
+  margin-top: 0;
+  transition:
+    margin-top 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-.section.active .skill-card:nth-child(1) {
-  animation: scaleIn 0.5s ease 0.1s forwards;
+.section.active .piano-key:nth-child(1) {
+  animation: keyDrop 0.4s ease 0.1s forwards;
 }
-.section.active .skill-card:nth-child(2) {
-  animation: scaleIn 0.5s ease 0.2s forwards;
+.section.active .piano-key:nth-child(2) {
+  animation: keyDrop 0.4s ease 0.2s forwards;
 }
-.section.active .skill-card:nth-child(3) {
-  animation: scaleIn 0.5s ease 0.3s forwards;
+.section.active .piano-key:nth-child(3) {
+  animation: keyDrop 0.4s ease 0.3s forwards;
 }
-.section.active .skill-card:nth-child(4) {
-  animation: scaleIn 0.5s ease 0.4s forwards;
+.section.active .piano-key:nth-child(4) {
+  animation: keyDrop 0.4s ease 0.4s forwards;
 }
-.section.active .skill-card:nth-child(5) {
-  animation: scaleIn 0.5s ease 0.5s forwards;
+.section.active .piano-key:nth-child(5) {
+  animation: keyDrop 0.4s ease 0.5s forwards;
 }
-.section.active .skill-card:nth-child(6) {
-  animation: scaleIn 0.5s ease 0.6s forwards;
+.section.active .piano-key:nth-child(6) {
+  animation: keyDrop 0.4s ease 0.6s forwards;
 }
-
-.skill-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+.section.active .piano-key:nth-child(7) {
+  animation: keyDrop 0.4s ease 0.7s forwards;
 }
 
-.skill-icon {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
+@keyframes keyDrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.skill-name {
+.piano-key:hover {
+  margin-top: 36px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.piano-key.locked {
+  margin-top: 36px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 -6px 0 var(--red);
+}
+
+.key-label {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: var(--cream);
+  opacity: 0.3;
+  letter-spacing: 1px;
+  user-select: none;
+  transition: opacity 0.15s ease;
 }
 
-.skill-description {
-  font-size: 1rem;
+.piano-key:hover .key-label,
+.piano-key.locked .key-label {
   opacity: 0.8;
+}
+
+/* Skill display area */
+.skill-display {
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-display-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.skill-display-text {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
 /* === PROJECTS SECTION === */
@@ -661,6 +715,7 @@ body {
 .contact-methods {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 2rem;
 }
 
@@ -670,6 +725,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: fit-content;
   transition: transform 0.3s ease;
   opacity: 0;
   transform: translateX(-30px);
@@ -737,10 +793,19 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 0.9rem;
   letter-spacing: 2px;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 2rem;
   border: 2px solid var(--black);
   display: inline-block;
   margin: 0 auto;
+  color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stereo-badge:hover {
+  background: var(--black);
+  color: var(--cream);
 }
 
 /* === FOOTER === */
@@ -878,5 +943,18 @@ body {
 
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+
+  .piano-key {
+    height: 260px;
+    min-width: 40px;
+  }
+
+  .piano-keyboard {
+    gap: 4px;
+  }
+
+  .skill-display-title {
+    font-size: 1.8rem;
   }
 }

@@ -20,18 +20,18 @@
         <ul class="nav-links">
           <li><a href="#hero" data-section="hero">HOME</a></li>
           <li><a href="#about" data-section="about">ABOUT</a></li>
-          <li><a href="#skills" data-section="skills">THE BAND</a></li>
-          <li><a href="#projects" data-section="projects">DISCOGRAPHY</a></li>
+          <li><a href="#skills" data-section="skills">SKILLS</a></li>
+          <li><a href="#projects" data-section="projects">PROJECTS</a></li>
           <li>
-            <a href="#experience" data-section="experience">TOUR DATES</a>
+            <a href="#experience" data-section="experience">EXPERIENCE</a>
           </li>
-          <li><a href="#contact" data-section="contact">BOOKING</a></li>
+          <li><a href="#contact" data-section="contact">CONTACT</a></li>
         </ul>
       </div>
     </nav>
 
     <!-- Hero -->
-    <section id="hero" class="section hero-section" data-bg-color="#e63946">
+    <section id="hero" class="section hero-section" data-bg-color="#c8102e">
       <div class="container">
         <div class="hero-content">
           <div class="label-number">BN 001</div>
@@ -69,11 +69,11 @@
     </section>
 
     <!-- about -->
-    <section id="about" class="section about-section" data-bg-color="#1d3557">
+    <section id="about" class="section about-section" data-bg-color="#132a43">
       <div class="container">
         <div class="section-header">
           <div class="section-number">02</div>
-          <h2 class="section-title">ABOUT THE ARTIST</h2>
+          <h2 class="section-title">ABOUT ME</h2>
         </div>
         <div class="about-content">
           <div class="about-text">
@@ -127,45 +127,62 @@
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="section skills-section" data-bg-color="#e63946">
+    <section id="skills" class="section skills-section" data-bg-color="#c8102e">
       <div class="container">
         <div class="section-header">
           <div class="section-number">03</div>
-          <h2 class="section-title">THE BAND</h2>
-          <p class="section-subtitle">MEET THE INSTRUMENTS</p>
+          <h2 class="section-title">SKILLS</h2>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon">🎹</div>
-            <h3 class="skill-name">PIANO</h3>
-            <p class="skill-description">JavaScript, TypeScript, Python</p>
+        <div class="piano-keyboard">
+          <div
+            class="piano-key"
+            data-skill="languages"
+            data-title="LANGUAGES"
+            data-skills="Python, Java, C, SQL, JS/TS"
+          >
+            <div class="key-label">C</div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🎺</div>
-            <h3 class="skill-name">TRUMPET</h3>
-            <p class="skill-description">React, Next.js, Vue</p>
+          <div
+            class="piano-key"
+            data-skill="datascience"
+            data-title="DATA & ML"
+            data-skills="pandas, NumPy, Matplotlib, seaborn, Scikit-learn, TensorFlow"
+          >
+            <div class="key-label">D</div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🎷</div>
-            <h3 class="skill-name">SAXOPHONE</h3>
-            <p class="skill-description">Node.js, Express, FastAPI</p>
+          <div
+            class="piano-key"
+            data-skill="webdev"
+            data-title="WEB DEV"
+            data-skills="React, Flask, REST APIs, HTML/CSS"
+          >
+            <div class="key-label">E</div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🥁</div>
-            <h3 class="skill-name">DRUMS</h3>
-            <p class="skill-description">PostgreSQL, MongoDB, Redis</p>
+          <div
+            class="piano-key"
+            data-skill="tools"
+            data-title="TOOLS & INFRA"
+            data-skills="Git, Figma, UNIX/Linux, Azure, Docker"
+          >
+            <div class="key-label">F</div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🎸</div>
-            <h3 class="skill-name">BASS</h3>
-            <p class="skill-description">Docker, AWS, CI/CD</p>
+          <div class="piano-key piano-key-blank">
+            <div class="key-label">G</div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🎻</div>
-            <h3 class="skill-name">STRINGS</h3>
-            <p class="skill-description">Git, Agile, Testing</p>
+          <div class="piano-key piano-key-blank">
+            <div class="key-label">A</div>
+          </div>
+          <div class="piano-key piano-key-blank">
+            <div class="key-label">B</div>
           </div>
         </div>
+        <div class="skill-display">
+          <h3 class="skill-display-title">&nbsp;</h3>
+          <p class="skill-display-text">
+            Hover or click a key to see my skills
+          </p>
+        </div>
+        <div class="halftone-overlay"></div>
       </div>
     </section>
 
@@ -173,12 +190,12 @@
     <section
       id="projects"
       class="section projects-section"
-      data-bg-color="#1d3557"
+      data-bg-color="#132a43"
     >
       <div class="container">
         <div class="section-header">
           <div class="section-number">04</div>
-          <h2 class="section-title">DISCOGRAPHY</h2>
+          <h2 class="section-title">PROJECTS</h2>
           <p class="section-subtitle">GREATEST HITS</p>
         </div>
         <div class="albums-grid">
@@ -188,19 +205,25 @@
               <div class="album-title-cover">PROJECT ONE</div>
             </div>
             <div class="album-info">
-              <h3 class="album-name">Project Name</h3>
+              <h3 class="album-name">Statify</h3>
               <p class="album-description">
-                A full-stack application that does amazing things. Built with
-                React and Node.js.
+                Developed a full-stack application using the Spotify Web API,
+                employing OAuth 2.0 for secure authentication and personalised
+                data retrieval. Created a dynamic React frontend component
+                featuring a stateful, interactive UI that allows users to filter
+                their top data by time range. Managed collaboratively using
+                GitHub for version control, code review and feature branching.
               </p>
               <div class="album-tags">
                 <span class="tag">React</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">PostgreSQL</span>
+                <span class="tag">Flask</span>
+                <span class="tag">Spotify API</span>
               </div>
               <div class="album-links">
-                <a href="#" class="album-link">VIEW LIVE</a>
-                <a href="#" class="album-link">SOURCE CODE</a>
+                <a href="not hosted yet" class="album-link">VIEW LIVE</a>
+                <a href="https://github.com/WO0O0O/Statify" class="album-link"
+                  >GITHUB</a
+                >
               </div>
             </div>
           </div>
@@ -211,19 +234,29 @@
               <div class="album-title-cover">PROJECT TWO</div>
             </div>
             <div class="album-info">
-              <h3 class="album-name">Another Project</h3>
+              <h3 class="album-name">K-means donor segmentation model</h3>
               <p class="album-description">
-                An innovative solution to a complex problem. Features real-time
-                updates and modern UI.
+                Engineered an unsupervised K-means clustering model on a donor
+                dataset to create 4 distinct segments, increasing targeting
+                efficiency for fundraising and donor retention. Delivered
+                actionable business insights through comprehensive data
+                visualisations, facilitating data-driven decision-making for the
+                nonprofit
               </p>
               <div class="album-tags">
-                <span class="tag">TypeScript</span>
-                <span class="tag">Next.js</span>
-                <span class="tag">Tailwind</span>
+                <span class="tag">Python</span>
+                <span class="tag">pandas</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">Seaborn</span>
+                <span class="tag">Scikit-learn</span>
               </div>
               <div class="album-links">
-                <a href="#" class="album-link">VIEW LIVE</a>
-                <a href="#" class="album-link">SOURCE CODE</a>
+                <a
+                  href="https://github.com/WO0O0O/Kmeans-donor-model"
+                  class="album-link"
+                  >GITHUB</a
+                >
               </div>
             </div>
           </div>
@@ -234,23 +267,26 @@
               <div class="album-title-cover">PROJECT THREE</div>
             </div>
             <div class="album-info">
-              <h3 class="album-name">Third Project</h3>
+              <h3 class="album-name">Monita</h3>
               <p class="album-description">
-                A creative experiment pushing the boundaries of what's possible
-                on the web.
+                A Website uptime monitoring tool that sends the user
+                notifications if their website is down along with the specific
+                error code. This was built as a side project to notify me if
+                another of my websites was down.
               </p>
               <div class="album-tags">
-                <span class="tag">Python</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">Docker</span>
+                <span class="tag">React</span>
+                <span class="tag">Flask</span>
               </div>
               <div class="album-links">
-                <a href="#" class="album-link">VIEW LIVE</a>
-                <a href="#" class="album-link">SOURCE CODE</a>
+                <a href="https://github.com/WO0O0O/Monita" class="album-link"
+                  >GITHUB</a
+                >
               </div>
             </div>
           </div>
         </div>
+        <div class="halftone-overlay"></div>
       </div>
     </section>
 
@@ -258,51 +294,64 @@
     <section
       id="experience"
       class="section experience-section"
-      data-bg-color="#e63946"
+      data-bg-color="#c8102e"
     >
       <div class="container">
         <div class="section-header">
           <div class="section-number">05</div>
-          <h2 class="section-title">TOUR DATES</h2>
+          <h2 class="section-title">WORK EXPERIENCE</h2>
           <p class="section-subtitle">PAST & PRESENT GIGS</p>
         </div>
         <div class="tour-dates">
           <div class="tour-date">
             <div class="date-left">
-              <div class="date-year">2024</div>
+              <div class="date-year">July 2026</div>
               <div class="date-duration">PRESENT</div>
             </div>
             <div class="date-right">
-              <h3 class="venue-name">COMPANY NAME</h3>
-              <div class="role-title">Senior Software Engineer</div>
-              <p class="role-description">
-                Leading development of scalable web applications. Mentoring
-                junior developers and architecting cloud solutions.
-              </p>
+              <h3 class="venue-name">Lexis Nexis Risk Solutions</h3>
+              <div class="role-title">Data Science Placement Student</div>
+              <p class="role-description">TBD</p>
               <div class="role-tags">
-                <span class="tag">React</span>
-                <span class="tag">AWS</span>
-                <span class="tag">Team Lead</span>
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Snowflake</span>
               </div>
             </div>
           </div>
 
           <div class="tour-date">
             <div class="date-left">
-              <div class="date-year">2022</div>
-              <div class="date-duration">2024</div>
+              <div class="date-year">June 2025</div>
+              <div class="date-duration">August 2025</div>
             </div>
             <div class="date-right">
-              <h3 class="venue-name">PREVIOUS COMPANY</h3>
-              <div class="role-title">Software Engineer</div>
-              <p class="role-description">
-                Built and maintained multiple client-facing applications.
-                Improved performance by 40% through optimization.
-              </p>
+              <h3 class="venue-name">Footprints CEC</h3>
+              <div class="role-title">Support Engineer</div>
+              <ul class="role-description">
+                <li>
+                  Developed a K-Means clustering model for donor segmentation,
+                  with data cleaning, feature engineering and strategic
+                  visualisation of results for actionable insights.
+                </li>
+                <li>
+                  Implemented cloud-based solutions that included migrating the
+                  CRM from Salesforce to a cost-effective alternative,
+                  configuring Google Workspace/Meta Ads, and setting up a new
+                  e-commerce and event platform, resulting in over £300 in
+                  annual savings.
+                </li>
+                <li>
+                  Led a comprehensive data migration plan for the integration of
+                  a legacy database into a new Azure cloud environment, defining
+                  schemas and ETL processes to ensure data integrity and system
+                  scalability.
+                </li>
+              </ul>
               <div class="role-tags">
-                <span class="tag">JavaScript</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">MongoDB</span>
+                <span class="tag">Database Migration</span>
+                <span class="tag">CRM Management</span>
+                <span class="tag">Web Development</span>
               </div>
             </div>
           </div>
@@ -310,23 +359,23 @@
           <div class="tour-date">
             <div class="date-left">
               <div class="date-year">2020</div>
-              <div class="date-duration">2022</div>
+              <div class="date-duration">2023</div>
             </div>
             <div class="date-right">
-              <h3 class="venue-name">FIRST COMPANY</h3>
-              <div class="role-title">Junior Developer</div>
+              <h3 class="venue-name">Le Table D'Alix</h3>
+              <div class="role-title">Kitchen Porter</div>
               <p class="role-description">
-                Started my professional journey building features and learning
-                from senior engineers.
+                Washing dishes, cleaning the kitchen, and assisting the chefs.
               </p>
               <div class="role-tags">
-                <span class="tag">HTML/CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Git</span>
+                <span class="tag">Caffeine addiction</span>
+                <span class="tag">Pain tolerance</span>
+                <span class="tag">Stoicism</span>
               </div>
             </div>
           </div>
         </div>
+        <div class="halftone-overlay"></div>
       </div>
     </section>
 
@@ -334,13 +383,13 @@
     <section
       id="contact"
       class="section contact-section"
-      data-bg-color="#1d3557"
+      data-bg-color="#132a43"
     >
       <div class="container">
         <div class="section-header">
           <div class="section-number">06</div>
-          <h2 class="section-title">BOOKING</h2>
-          <p class="section-subtitle">LET'S MAKE SOMETHING GREAT</p>
+          <h2 class="section-title">CONTACT</h2>
+          <p class="section-subtitle">LET'S WORK TOGETHER</p>
         </div>
         <div class="contact-content">
           <div class="contact-info">
@@ -349,42 +398,57 @@
               opportunities.
             </p>
             <div class="contact-methods">
-              <a href="mailto:your.email@example.com" class="contact-method">
+              <div
+                class="contact-method"
+                id="email-copy"
+                style="cursor: pointer"
+                onclick="
+                  navigator.clipboard
+                    .writeText('daniel@thewoosters.com')
+                    .then(() => {
+                      const label = this.querySelector('.method-label');
+                      label.textContent = 'COPIED!';
+                      setTimeout(() => (label.textContent = 'EMAIL'), 1500);
+                    })
+                "
+              >
                 <span class="method-label">EMAIL</span>
-                <span class="method-value">your.email@example.com</span>
-              </a>
+                <span class="method-value">daniel@thewoosters.com</span>
+              </div>
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/WO0O0O"
                 class="contact-method"
                 target="_blank"
               >
                 <span class="method-label">GITHUB</span>
-                <span class="method-value">@yourusername</span>
+                <span class="method-value">@WO0O0O</span>
               </a>
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/in/daniel-wooster-32772b195/"
                 class="contact-method"
                 target="_blank"
               >
                 <span class="method-label">LINKEDIN</span>
-                <span class="method-value">/in/yourprofile</span>
+                <span class="method-value">Daniel Wooster</span>
               </a>
               <a
-                href="https://twitter.com/yourusername"
+                href="https://open.spotify.com/user/d9woo?si=34fc9ded963d4b81"
                 class="contact-method"
                 target="_blank"
               >
-                <span class="method-label">TWITTER</span>
-                <span class="method-value">@yourusername</span>
+                <span class="method-label">Spotify</span>
+                <span class="method-value">@d9woo</span>
               </a>
             </div>
           </div>
           <div class="contact-cta">
-            <div class="record-label">BLUE NOTE RECORDS</div>
-            <div class="catalog-number">BN 80915</div>
-            <div class="stereo-badge">STEREO</div>
+            <div class="record-label">DW RECORDS</div>
+            <a href="Daniel_Wooster_CV.pdf" download class="stereo-badge"
+              >DOWNLOAD CV</a
+            >
           </div>
         </div>
+        <div class="halftone-overlay"></div>
       </div>
     </section>
 
