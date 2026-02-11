@@ -477,6 +477,8 @@ body {
 .albums-grid {
   display: grid;
   gap: 3rem;
+  position: relative;
+  z-index: 2;
 }
 
 .album-card {
@@ -507,18 +509,13 @@ body {
 
 .album-cover {
   background: var(--red);
-  aspect-ratio: 16/9; /* Changed to better fit screenshots */
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 2rem;
   position: relative;
   overflow: hidden;
-  /* Padding is now conditional or managed by children */
-}
-
-.album-cover > *:not(img) {
-  padding: 2rem; /* Add padding back for text elements */
-  z-index: 2;
 }
 
 .album-cover::after {
@@ -536,35 +533,40 @@ body {
   background-size: 12px 12px;
   opacity: 0.2;
   pointer-events: none;
-  z-index: 1;
 }
 
-.project-image {
+/* Image-based album covers (laptop mockups) */
+.album-cover-img {
+  background: var(--dark-blue);
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.album-cover-img::after {
+  display: none;
+}
+
+.album-cover-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  transition: transform 0.5s ease;
-}
-
-.album-card:hover .project-image {
-  transform: scale(1.05);
+  object-fit: contain;
+  padding: 1rem;
 }
 
 .album-number {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 0.8rem;
   letter-spacing: 1px;
+  z-index: 1;
 }
 
 .album-title-cover {
   font-family: "Bebas Neue", sans-serif;
   font-size: 2.5rem;
   letter-spacing: 2px;
+  z-index: 1;
   line-height: 1;
 }
 
