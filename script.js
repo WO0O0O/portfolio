@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ===
   const observerOptions = {
     root: null,
-    rootMargin: "-100px",
-    threshold: 0.15, // Lowered from 0.2 to 0.15 so tall sections on mobile still trigger
+    rootMargin: "-50px",
+    threshold: 0.1,
   };
 
   const sectionObserver = new IntersectionObserver((entries) => {
