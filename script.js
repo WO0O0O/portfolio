@@ -224,46 +224,54 @@ document.addEventListener("DOMContentLoaded", () => {
 document.body.style.transition =
   "background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1)";
 
-// === EASTER EGG: VINYL PLAYER (Placeholder for future implementation) ===
-// When you're ready to add the vinyl player, you can use this structure:
-/*
+// === VINYL PLAYER ===
 class VinylPlayer {
-    constructor() {
-        this.audio = new Audio();
-        this.isPlaying = false;
-        this.vinyl = null;
-        this.init();
+  constructor() {
+    this.audio = new Audio();
+    // Placeholder audio - User to provide file later
+    this.audio.src = "assets/music/MiltonArias.mp3";
+    this.audio.loop = true;
+    this.isPlaying = false;
+
+    this.init();
+  }
+
+  init() {
+    this.createPlayer();
+    this.attachEvents();
+  }
+
+  createPlayer() {
+    const playerContainer = document.createElement("div");
+    playerContainer.className = "vinyl-player";
+
+    const disc = document.createElement("div");
+    disc.className = "vinyl-disc";
+
+    playerContainer.appendChild(disc);
+    document.body.appendChild(playerContainer);
+
+    this.element = playerContainer;
+  }
+
+  attachEvents() {
+    this.element.addEventListener("click", () => this.toggle());
+  }
+
+  toggle() {
+    if (this.isPlaying) {
+      this.audio.pause();
+      this.element.classList.remove("playing");
+    } else {
+      // Catch error if file doesn't exist
+      this.audio
+        .play()
+        .catch((e) => console.log("Audio file missing or blocked:", e));
+      this.element.classList.add("playing");
     }
-    
-    init() {
-        // Create vinyl player UI
-        this.createPlayer();
-        // Set up audio source - you can change this later
-        this.audio.src = 'path/to/your/jazz-track.mp3';
-    }
-    
-    createPlayer() {
-        const player = document.createElement('div');
-        player.className = 'vinyl-player';
-        player.innerHTML = `
-            <div class="vinyl-disc"></div>
-            <button class="vinyl-btn">▶</button>
-        `;
-        // Style and position in corner
-        // Add to document
-    }
-    
-    toggle() {
-        if (this.isPlaying) {
-            this.audio.pause();
-            // Stop vinyl rotation
-        } else {
-            this.audio.play();
-            // Start vinyl rotation animation
-        }
-        this.isPlaying = !this.isPlaying;
-    }
+    this.isPlaying = !this.isPlaying;
+  }
 }
 
-// To activate: const player = new VinylPlayer();
-*/
+// Initialize
+const vinylPlayer = new VinylPlayer();
