@@ -1045,6 +1045,14 @@ body.nav-open .hamburger-inner::after {
 
 /* Mobile (Max width: 640px) */
 @media (max-width: 640px) {
+  .nav-content {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+
   .piano-keyboard {
     gap: 4px;
     margin-bottom: 5rem;
@@ -1057,6 +1065,20 @@ body.nav-open .hamburger-inner::after {
 
   .nav-links {
     display: none;
+  }
+
+  /* When JS toggles this class the mobile nav becomes visible */
+  .nav-links.mobile-open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(13, 13, 13, 0.98);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    z-index: 1000;
   }
 
   .section {

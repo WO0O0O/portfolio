@@ -15,6 +15,24 @@ document.addEventListener("DOMContentLoaded", () => {
           behavior: "smooth",
           block: "start",
         });
+        // If mobile menu is open, close it after navigating
+        try {
+          if (window.innerWidth <= 640) {
+            const navContainer = document.getElementById("nav-links");
+            const menuBtn = document.getElementById("mobile-menu-btn");
+            if (
+              navContainer &&
+              navContainer.classList.contains("mobile-open")
+            ) {
+              navContainer.classList.remove("mobile-open");
+              if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
+              // move focus back to the menu button so keyboard users aren't left on the link
+              if (menuBtn) menuBtn.focus();
+            }
+          }
+        } catch (err) {
+          // defensive: ignore if DOM not present
+        }
       }
     });
   });
@@ -169,13 +187,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const createMobileMenu = () => {
     if (window.innerWidth <= 640) {
       const nav = document.querySelector(".navbar");
-      const navLinks = document.querySelector(".nav-links");
+      const navLinks = document.getElementById("nav-links");
 
       // Check if menu button already exists
-      if (!document.querySelector(".mobile-menu-btn")) {
+      if (!document.getElementById("mobile-menu-btn")) {
         const menuBtn = document.createElement("button");
+        menuBtn.id = "mobile-menu-btn";
         menuBtn.className = "mobile-menu-btn";
-        menuBtn.innerHTML = "☰";
+        menuBtn.type = "button";
+        menuBtn.setAttribute("aria-controls", "nav-links");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open navigation menu");
+        menuBtn.textContent = "☰";
         menuBtn.style.cssText = `
                     background: none;
                     border: none;
@@ -188,17 +211,35 @@ document.addEventListener("DOMContentLoaded", () => {
         nav.querySelector(".nav-content").appendChild(menuBtn);
 
         menuBtn.addEventListener("click", () => {
-          navLinks.style.display =
-            navLinks.style.display === "flex" ? "none" : "flex";
-          navLinks.style.position = "absolute";
-          navLinks.style.top = "100%";
-          navLinks.style.left = "0";
-          navLinks.style.right = "0";
-          navLinks.style.background = "rgba(13, 13, 13, 0.98)";
-          navLinks.style.flexDirection = "column";
-          navLinks.style.padding = "2rem";
-          navLinks.style.gap = "1.5rem";
+          const isOpen = navLinks.classList.toggle("mobile-open");
+          menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          if (isOpen) {
+            // move focus to first link for easier keyboard navigation
+            const firstLink = navLinks.querySelector("a");
+            if (firstLink) firstLink.focus();
+          } else {
+            menuBtn.focus();
+          }
         });
+
+        // Close menu if user resizes to desktop
+        window.addEventListener("resize", () => {
+          if (
+            window.innerWidth > 640 &&
+            navLinks.classList.contains("mobile-open")
+          ) {
+            navLinks.classList.remove("mobile-open");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+    } else {
+      // If desktop ensure mobile class removed
+      const navLinks = document.getElementById("nav-links");
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      if (navLinks && navLinks.classList.contains("mobile-open")) {
+        navLinks.classList.remove("mobile-open");
+        if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
       }
     }
   };
