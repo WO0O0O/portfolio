@@ -103,11 +103,13 @@ document.addEventListener("DOMContentLoaded", () => {
     elementObserver.observe(el);
   });
 
-  // === PIANO KEYS INTERACTION ===
+  // === PIANO INTERACTION ===
   const pianoKeys = document.querySelectorAll(".piano-key");
+  const skillDisplay = document.querySelector(".skill-display");
   const skillTitle = document.querySelector(".skill-display-title");
   const skillText = document.querySelector(".skill-display-text");
   let lockedKey = null;
+  let pianoEngine = null; // Lazy load audio context
 
   function showSkill(key) {
     const title = key.getAttribute("data-title");
@@ -139,14 +141,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Click: lock this key
     key.addEventListener("click", () => {
-      if (lockedKey === key) {
-        // Clicking same key unlocks it
-        key.classList.remove("locked");
-        lockedKey = null;
-        resetDisplay();
+      // Initialise piano engine on first user interaction
+      if (!pianoEngine) {
+        pianoEngine = new PianoEngine();
+      }
+
+      // Play sound
+      const note = key.querySelector(".key-label").textContent;
+      pianoEngine.play(note);
+
+      // Toggle functionality
+      if (key.classList.contains("locked")) {
+        return;
       } else {
-        // Unlock previous, lock this one
-        if (lockedKey) lockedKey.classList.remove("locked");
+        if (lockedKey) {
+          lockedKey.classList.remove("locked");
+        }
         key.classList.add("locked");
         lockedKey = key;
         showSkill(key);
@@ -273,5 +283,47 @@ class VinylPlayer {
   }
 }
 
-// Initialize
+// === PIANO SOUND ENGINE ===
+class PianoEngine {
+  constructor() {
+    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    this.notes = {
+      C: 261.63, // C4
+      D: 293.66, // D4
+      E: 329.63, // E4
+      F: 349.23, // F4
+      G: 392.0, // G4
+      A: 440.0, // A4
+      B: 493.88, // B4
+    };
+  }
+
+  play(noteChar) {
+    if (this.ctx.state === "suspended") this.ctx.resume();
+
+    const freq = this.notes[noteChar];
+    if (!freq) return;
+
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    // Sound shaping
+    osc.type = "triangle"; // Smoother than square, richer than sine
+    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+    // Envelope (Attack -> Decay)
+    gain.gain.setValueAtTime(0, this.ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.3, this.ctx.currentTime + 0.02); // Attack
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1.5); // Decay
+
+    // Connect and play
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start();
+    osc.stop(this.ctx.currentTime + 1.5);
+  }
+}
+
+// Initialise
 const vinylPlayer = new VinylPlayer();
