@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observerOptions = {
     root: null,
     rootMargin: "-100px",
-    threshold: 0.2,
+    threshold: 0.15, // Lowered from 0.2 to 0.15 so tall sections on mobile still trigger
   };
 
   const sectionObserver = new IntersectionObserver((entries) => {
