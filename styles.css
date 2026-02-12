@@ -16,11 +16,13 @@
 
 html {
   scroll-behavior: smooth;
+  /* Match the navbar so iOS overscroll / pull-to-refresh shows dark, not red */
+  background-color: var(--black);
 }
 
 body {
   font-family: "Roboto Condensed", sans-serif;
-  background: var(--red);
+  background: var(--black);
   color: var(--black);
   overflow-x: hidden;
   transition: background-color var(--transition-speed)
