@@ -1,9 +1,8 @@
-// === SMOOTH SCROLL & NAVIGATION ===
 document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll(".section");
   const navLinks = document.querySelectorAll(".nav-links a");
 
-  // Smooth scroll for navigation links
+  // Smooth scroll for nav links
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
           behavior: "smooth",
           block: "start",
         });
-        // If mobile menu is open, close it after navigating
         try {
           if (window.innerWidth <= 640) {
             const navContainer = document.getElementById("nav-links");
@@ -30,14 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
               if (menuBtn) menuBtn.focus();
             }
           }
-        } catch (err) {
-          // defensive: ignore if DOM not present
-        }
+        } catch (err) {}
       }
     });
   });
 
-  // === INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ===
   const observerOptions = {
     root: null,
     rootMargin: "-50px",
@@ -49,13 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
 
-        // Update background color with smooth transition
         const bgColor = entry.target.getAttribute("data-bg-color");
         if (bgColor) {
           document.body.style.backgroundColor = bgColor;
         }
 
-        // Update active nav link
         updateActiveNavLink(entry.target.id);
       }
     });
@@ -66,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionObserver.observe(section);
   });
 
-  // Update active navigation link
   function updateActiveNavLink(sectionId) {
     navLinks.forEach((link) => {
       link.classList.remove("active");
@@ -76,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === PARALLAX EFFECT FOR HERO ===
   const heroSection = document.querySelector(".hero-section");
   const halftoneOverlay = document.querySelector(".halftone-overlay");
 
@@ -96,8 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === SYNCOPATED REVEAL ANIMATIONS ===
-  // Add stagger effect to elements within sections
   const animateOnScroll = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -111,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     rootMargin: "0px 0px -50px 0px",
   });
 
-  // Observe cards and items for staggered animation
   const animatedElements = document.querySelectorAll(
     ".piano-key, .album-card, .tour-date, .stat-item, .contact-method",
   );
@@ -121,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     elementObserver.observe(el);
   });
 
-  // === PIANO INTERACTION ===
   const pianoKeys = document.querySelectorAll(".piano-key");
   const skillDisplay = document.querySelector(".skill-display");
   const skillTitle = document.querySelector(".skill-display-title");
@@ -143,12 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   pianoKeys.forEach((key) => {
-    // Hover: show skill text (CSS :hover handles the visual press)
     key.addEventListener("mouseenter", () => {
       showSkill(key);
     });
 
-    // Mouse leave: revert to locked key or reset
     key.addEventListener("mouseleave", () => {
       if (lockedKey) {
         showSkill(lockedKey);
@@ -157,9 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Click: lock this key
     key.addEventListener("click", () => {
-      // Initialise piano engine on first user interaction
       if (!pianoEngine) {
         pianoEngine = new PianoEngine();
       }
@@ -168,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const note = key.querySelector(".key-label").textContent;
       pianoEngine.play(note);
 
-      // Toggle functionality
       if (key.classList.contains("locked")) {
         return;
       } else {
@@ -182,8 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === MOBILE MENU TOGGLE ===
-  // Simple hamburger menu for mobile (you can expand this)
   const createMobileMenu = () => {
     if (window.innerWidth <= 640) {
       const nav = document.querySelector(".navbar");
@@ -222,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
-        // Close menu if user resizes to desktop
         window.addEventListener("resize", () => {
           if (
             window.innerWidth > 640 &&
@@ -234,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     } else {
-      // If desktop ensure mobile class removed
       const navLinks = document.getElementById("nav-links");
       const menuBtn = document.getElementById("mobile-menu-btn");
       if (navLinks && navLinks.classList.contains("mobile-open")) {
@@ -247,21 +225,15 @@ document.addEventListener("DOMContentLoaded", () => {
   createMobileMenu();
   window.addEventListener("resize", createMobileMenu);
 
-  // === PERFORMANCE OPTIMIZATION ===
-  // Debounce scroll events
   let scrollTimeout;
   window.addEventListener("scroll", () => {
     if (scrollTimeout) {
       window.cancelAnimationFrame(scrollTimeout);
     }
 
-    scrollTimeout = window.requestAnimationFrame(() => {
-      // Additional scroll-based animations can go here
-    });
+    scrollTimeout = window.requestAnimationFrame(() => {});
   });
 
-  // === PRELOAD ANIMATIONS ===
-  // Trigger hero animations on load
   setTimeout(() => {
     const heroSection = document.querySelector(".hero-section");
     if (heroSection) {
@@ -270,16 +242,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 100);
 });
 
-// === UTILITY: SMOOTH COLOR TRANSITIONS ===
-// This ensures body background transitions are always smooth
 document.body.style.transition =
   "background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1)";
 
-// === VINYL PLAYER ===
 class VinylPlayer {
   constructor() {
     this.audio = new Audio();
-    // Placeholder audio - User to provide file later
     this.audio.src = "assets/music/MiltonArias.mp3";
     this.audio.loop = true;
     this.isPlaying = false;
@@ -314,7 +282,6 @@ class VinylPlayer {
       this.audio.pause();
       this.element.classList.remove("playing");
     } else {
-      // Catch error if file doesn't exist
       this.audio
         .play()
         .catch((e) => console.log("Audio file missing or blocked:", e));
@@ -324,7 +291,6 @@ class VinylPlayer {
   }
 }
 
-// === PIANO SOUND ENGINE ===
 class PianoEngine {
   constructor() {
     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -348,11 +314,9 @@ class PianoEngine {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
 
-    // Sound shaping
-    osc.type = "triangle"; // Smoother than square, richer than sine
+    osc.type = "triangle";
     osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
-    // Envelope (Attack -> Decay)
     gain.gain.setValueAtTime(0, this.ctx.currentTime);
     gain.gain.linearRampToValueAtTime(0.3, this.ctx.currentTime + 0.02); // Attack
     gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1.5); // Decay
