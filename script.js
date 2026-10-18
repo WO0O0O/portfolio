@@ -33,6 +33,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // --- Hero subtitle: "sax solo" lettering (Blue Note style) ---
+  // Each letter gets its own size, baseline and tilt from a fixed seed, so the
+  // line looks unpredictable but is identical on every load and stays readable.
+  const subtitleText = document.querySelector(".subtitle-text");
+  if (subtitleText) {
+    const text = subtitleText.textContent.trim();
+    subtitleText.setAttribute("aria-label", text);
+    subtitleText.textContent = "";
+    let seed = 7;
+    const rand = () => {
+      seed = (seed * 16807) % 2147483647;
+      return seed / 2147483647;
+    };
+    // One line that climbs from left to right: "Data Science |" sits a little
+    // lower and "AI Engineering" flows up and away from it.
+    const chars = [...text];
+    chars.forEach((ch, i) => {
+      const span = document.createElement("span");
+      span.className = "solo-letter";
+      span.setAttribute("aria-hidden", "true");
+      if (ch === " ") {
+        span.classList.add("solo-space");
+        span.textContent = " ";
+      } else {
+        span.textContent = ch;
+        const climb = 0.18 - (i / (chars.length - 1)) * 0.36; // em, low to high
+        const wave = climb + Math.sin(i * 0.75) * 0.08; // plus a gentle ripple
+        const scale = 0.9 + rand() * 0.38; // 0.90 to 1.28
+        const lift = wave + (rand() - 0.5) * 0.18; // em
+        const tilt = Math.sin(i * 0.9 + 1) * 5 + (rand() - 0.5) * 8; // deg
+        span.style.setProperty("--s", scale.toFixed(2));
+        span.style.setProperty("--y", `${lift.toFixed(2)}em`);
+        span.style.setProperty("--r", `${tilt.toFixed(1)}deg`);
+      }
+      subtitleText.appendChild(span);
+    });
+  }
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && navContainer.classList.contains("mobile-open")) {
       setMenuOpen(false);
