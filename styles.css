@@ -18,6 +18,22 @@ html {
   background-color: var(--black);
 }
 
+/* Visible keyboard focus for every interactive element */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--cream);
+  outline-offset: 3px;
+}
+
+.hier-node:focus-visible {
+  outline: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
 body {
   font-family: "Roboto Condensed", sans-serif;
   background: var(--black);
@@ -95,6 +111,7 @@ body {
   color: var(--red);
 }
 
+.nav-links a.active::after,
 .nav-links a:hover::after {
   width: 100%;
 }
@@ -203,23 +220,12 @@ body {
   animation: fadeInUp 0.8s ease 0.7s forwards;
 }
 
-.subtitle-ampersand {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 3rem;
-  color: var(--cream);
-  background: var(--black);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
 .subtitle-text {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 3.2vw, 2rem);
   letter-spacing: 3px;
+  max-width: 28ch;
+  line-height: 1.15;
 }
 
 .hero-meta {
@@ -295,6 +301,15 @@ body {
   animation: staggerFadeIn 0.6s ease 0.6s forwards;
 }
 
+.section.active .about-text p:nth-child(4) {
+  animation: staggerFadeIn 0.6s ease 0.8s forwards;
+}
+
+.about-edu {
+  border-top: 2px solid rgba(241, 250, 238, 0.2);
+  padding-top: 1.5rem;
+}
+
 .lead-text {
   font-size: 1.4rem !important;
   font-weight: 700;
@@ -338,18 +353,6 @@ body {
   margin-top: 0.5rem;
 }
 
-.stat-label a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.stat-label a:hover {
-  opacity: 1;
-  border-bottom-color: var(--red);
-}
-
 /* SKILLS SECTION (PIANO KEYS) */
 .skills-section {
   background: var(--red);
@@ -361,7 +364,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 5rem;
+  margin-bottom: 1.5rem;
   width: 100%;
   max-width: 900px;
   margin-left: auto;
@@ -371,7 +374,7 @@ body {
 .piano-key {
   flex: 1 1 0px;
   min-width: 0;
-  height: 550px;
+  height: 300px;
   background: var(--black);
   border-radius: 0 0 6px 6px;
   cursor: pointer;
@@ -383,6 +386,12 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   opacity: 0;
   margin-top: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  gap: 1rem;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -429,6 +438,27 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.piano-key-blank {
+  cursor: default;
+}
+
+.key-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.75;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.piano-key:focus-visible {
+  outline-offset: 5px;
+}
+
 .key-label {
   font-family: "Bebas Neue", sans-serif;
   font-size: 1.6rem;
@@ -444,42 +474,81 @@ body {
   opacity: 0.8;
 }
 
-/* Skill display area */
-.skill-display {
+/* Skill groups: every skill is visible; the keys only highlight a group */
+.skill-hint {
   text-align: center;
-  min-height: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  min-width: 0;
-}
-
-.skill-display-title {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 2.5rem;
-  letter-spacing: 3px;
-  margin-bottom: 0.5rem;
-  transition: opacity 0.3s ease;
-}
-
-.skill-display-text {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.2rem;
   color: var(--cream);
-  opacity: 0.8;
-  width: 100%;
-  max-width: 600px;
-  line-height: 1.6;
-  padding: 0 1rem;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   letter-spacing: 1px;
-  transition: opacity 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.skill-group {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
+  padding: 1.5rem;
+  color: var(--cream);
+  border: 2px solid transparent;
+  transition:
+    opacity 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.skill-group.is-highlighted {
+  border-color: var(--cream);
+}
+
+.skill-group.is-dimmed {
+  opacity: 0.4;
+}
+
+.skill-group-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+
+.skill-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  background: var(--black);
+  color: var(--cream);
+  padding: 0.35rem 0.8rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.skill-where {
+  font-family: "Oswald", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  color: var(--cream);
+}
+
+.skill-where a {
+  color: var(--cream);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.skill-where a:hover {
+  color: var(--black);
 }
 
 /* PROJECTS SECTION */
@@ -516,6 +585,9 @@ body {
 .section.active .album-card:nth-child(3) {
   animation: slideInFromLeft 0.6s ease 0.6s forwards;
 }
+.section.active .album-card:nth-child(4) {
+  animation: slideInFromLeft 0.6s ease 0.8s forwards;
+}
 
 .album-card:hover {
   transform: translateX(10px);
@@ -549,39 +621,85 @@ body {
   pointer-events: none;
 }
 
-/* Image-based album covers (laptop mockups) */
-.album-cover-img {
-  background: var(--dark-blue);
-  padding: 0;
-  align-items: center;
-  justify-content: center;
+/* Real screenshots (Titanite) */
+.album-shots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-self: start;
+  position: relative;
   z-index: 2;
 }
 
-.album-cover-img::after {
-  display: none;
-}
-
-.album-cover-img img {
+.album-shots img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 1rem;
+  height: auto;
+  border: 1px solid rgba(241, 250, 238, 0.2);
+  border-radius: 3px;
 }
 
-.album-number {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 0.8rem;
+.album-shots figcaption,
+.album-shots-note {
+  font-size: 0.85rem;
   letter-spacing: 1px;
-  z-index: 1;
+  opacity: 0.8;
+  margin-top: 0.35rem;
 }
 
-.album-title-cover {
+/* Screen-reader-only text and skip link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 3000;
+  padding: 0.6rem 1rem;
+  background: var(--cream);
+  color: var(--black);
+  font-family: "Oswald", sans-serif;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Email row */
+.email-link {
+  color: inherit;
+}
+
+.copy-email {
+  margin-left: 0.75rem;
+  padding: 0.2rem 0.8rem;
+  background: none;
+  color: var(--cream);
+  border: 2px solid var(--red);
+  border-radius: 3px;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-  z-index: 1;
-  line-height: 1;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.copy-email:hover {
+  background: var(--red);
+  color: var(--black);
+}
+
+.copy-status {
+  margin-left: 0.75rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
 }
 
 .album-info {
@@ -626,19 +744,201 @@ body {
   gap: 1.5rem;
 }
 
-.album-link {
-  font-family: "Bebas Neue", sans-serif;
-  color: var(--cream);
-  text-decoration: none;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  border-bottom: 2px solid var(--red);
-  padding-bottom: 2px;
-  transition: color 0.3s ease;
+/* Inline SVG covers (diagrams and demo visuals) */
+.album-cover-svg {
+  background: var(--dark-blue);
+  padding: 0;
+  z-index: 2;
 }
 
-.album-link:hover {
+.album-cover-svg::after {
+  display: none;
+}
+
+.album-cover-svg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.album-status {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
   color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.album-private {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed var(--red);
+  padding-bottom: 2px;
+  opacity: 0.85;
+}
+
+.album-card-compact {
+  grid-template-columns: 1fr;
+  padding: 1.5rem 2rem;
+}
+
+.album-card-compact .album-name {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.album-card-compact .album-description {
+  margin-bottom: 1rem;
+}
+
+.album-card-compact .album-tags {
+  margin-bottom: 0;
+}
+
+.also-built {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.also-built a {
+  color: var(--cream);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-underline-offset: 4px;
+}
+
+.also-built a:hover {
+  color: var(--red);
+}
+
+/* AGENTIC hierarchy diagram */
+.hier-line {
+  stroke: var(--cream);
+  stroke-width: 2;
+  opacity: 0.5;
+}
+
+.hier-line-dashed {
+  stroke-dasharray: 5 5;
+}
+
+.hier-line-label {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  fill: var(--cream);
+  opacity: 0.7;
+}
+
+.hier-node {
+  cursor: pointer;
+}
+
+.hier-node rect {
+  fill: var(--black);
+  stroke: var(--red);
+  stroke-width: 2;
+  transition: fill 0.2s ease;
+}
+
+.hier-node text {
+  font-family: "Oswald", sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  fill: var(--cream);
+  pointer-events: none;
+}
+
+.hier-node .hier-tag {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  fill: var(--red);
+}
+
+.hier-node:hover rect {
+  fill: #2a0a10;
+}
+
+.hier-node[aria-pressed="true"] rect {
+  fill: var(--red);
+}
+
+.hier-node[aria-pressed="true"] text,
+.hier-node[aria-pressed="true"] .hier-tag {
+  fill: var(--black);
+}
+
+.hier-node:focus-visible rect {
+  stroke: var(--cream);
+  stroke-width: 4;
+}
+
+.hier-detail {
+  border-left: 3px solid var(--red);
+  padding: 0.25rem 0 0.25rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hier-detail-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.hier-detail-role,
+.hier-detail-tools {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.hier-detail-tools {
+  opacity: 0.85;
+}
+
+/* Astora Risk hub diagram */
+.hub-line {
+  stroke: var(--cream);
+  stroke-width: 2;
+  opacity: 0.6;
+}
+
+.hub-circle {
+  fill: var(--red);
+}
+
+.hub-box {
+  fill: var(--black);
+  stroke: var(--red);
+  stroke-width: 2;
+}
+
+.hub-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 26px;
+  letter-spacing: 2px;
+  fill: var(--black);
+}
+
+.hub-box ~ .hub-title,
+.hub-title-small {
+  font-size: 20px;
+  fill: var(--cream);
+}
+
+.hub-sub {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  fill: var(--black);
+}
+
+.hub-box ~ .hub-sub {
+  fill: var(--cream);
+  opacity: 0.8;
 }
 
 /* === EXPERIENCE SECTION === */
@@ -663,14 +963,43 @@ body {
   transform: translateY(30px);
 }
 
-.section.active .tour-date:nth-child(1) {
+/* nth-of-type: the "Earlier" divider is a <p>, so only the divs are counted */
+.section.active .tour-date:nth-of-type(1) {
   animation: staggerFadeIn 0.6s ease 0.2s forwards;
 }
-.section.active .tour-date:nth-child(2) {
+.section.active .tour-date:nth-of-type(2) {
   animation: staggerFadeIn 0.6s ease 0.4s forwards;
 }
-.section.active .tour-date:nth-child(3) {
+.section.active .tour-date:nth-of-type(3) {
   animation: staggerFadeIn 0.6s ease 0.6s forwards;
+}
+
+.tour-divider {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: -1rem 0;
+  opacity: 0.8;
+}
+
+.tour-divider::before,
+.tour-divider::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+ul.role-description {
+  padding-left: 1.25rem;
+}
+
+ul.role-description li + li {
+  margin-top: 0.5rem;
 }
 
 .tour-date:last-child {
@@ -819,12 +1148,6 @@ body {
   letter-spacing: 3px;
 }
 
-.catalog-number {
-  font-family: "Oswald", sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-}
-
 .stereo-badge {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 0.9rem;
@@ -851,6 +1174,15 @@ body {
   padding: 2rem 0;
   text-align: center;
   font-size: 0.9rem;
+}
+
+.footer p + p {
+  margin-top: 0.5rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
 /* === ANIMATIONS === */
@@ -932,60 +1264,6 @@ body {
   padding: 10px;
 }
 
-.hamburger-box {
-  width: 30px;
-  height: 24px;
-  display: inline-block;
-  position: relative;
-}
-
-.hamburger-inner {
-  display: block;
-  top: 50%;
-  margin-top: -2px;
-}
-
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-  width: 30px;
-  height: 3px;
-  background-color: var(--cream);
-  border-radius: 4px;
-  position: absolute;
-  transition-property: transform;
-  transition-duration: 0.15s;
-  transition-timing-function: ease;
-}
-
-.hamburger-inner::before,
-.hamburger-inner::after {
-  content: "";
-  display: block;
-}
-
-.hamburger-inner::before {
-  top: -10px;
-}
-
-.hamburger-inner::after {
-  bottom: -10px;
-}
-
-/* Active State (X shape) */
-body.nav-open .hamburger-inner {
-  transform: rotate(45deg);
-}
-
-body.nav-open .hamburger-inner::before {
-  top: 0;
-  opacity: 0;
-}
-
-body.nav-open .hamburger-inner::after {
-  bottom: 0;
-  transform: rotate(-90deg);
-}
 
 /* Tablet & Smaller (Max width: 968px) */
 @media (max-width: 968px) {
@@ -1034,10 +1312,6 @@ body.nav-open .hamburger-inner::after {
     font-size: 8rem;
   }
 
-  .hero-subtitle {
-    font-size: 2rem;
-  }
-
   .stat-item {
     margin-bottom: 1.5rem;
   }
@@ -1067,6 +1341,12 @@ body.nav-open .hamburger-inner::after {
     display: none;
   }
 
+  .mobile-menu-btn {
+    display: block;
+    color: var(--cream);
+    font-size: 2rem;
+  }
+
   /* When JS toggles this class the mobile nav becomes visible */
   .nav-links.mobile-open {
     display: flex;
@@ -1093,10 +1373,6 @@ body.nav-open .hamburger-inner::after {
     font-size: 4rem;
   }
 
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
   .piano-key {
     height: 260px;
     min-width: 40px;
@@ -1106,8 +1382,13 @@ body.nav-open .hamburger-inner::after {
     gap: 4px;
   }
 
-  .skill-display-title {
-    font-size: 1.8rem;
+  .key-name {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .skill-groups {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1121,6 +1402,11 @@ body.nav-open .hamburger-inner::after {
   z-index: 2000;
   cursor: pointer;
   transition: transform 0.3s ease;
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
 }
 
 .vinyl-player:hover {
@@ -1128,6 +1414,7 @@ body.nav-open .hamburger-inner::after {
 }
 
 .vinyl-disc {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -1173,5 +1460,47 @@ body.nav-open .hamburger-inner::after {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* === REDUCED MOTION === */
+/* Every element that starts hidden and is revealed by an animation is shown
+   in its final state instead, and all motion is switched off. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .section,
+  .label-number,
+  .title-line,
+  .subtitle,
+  .hero-meta,
+  .about-text p,
+  .stat-item,
+  .piano-key,
+  .album-card,
+  .tour-date,
+  .contact-method,
+  .contact-cta {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .piano-key:hover,
+  .piano-key.locked {
+    transform: translateY(36px) !important;
+  }
+
+  /* The record only spins after the visitor presses play, so keep it. */
+  .vinyl-player.playing .vinyl-disc {
+    animation: spin 3s linear infinite !important;
   }
 }

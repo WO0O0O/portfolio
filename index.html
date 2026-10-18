@@ -3,18 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daniel Wooster | Portfolio</title>
+    <title>Daniel Wooster | Computer Science &amp; AI student</title>
     <meta
       name="description"
-      content="Daniel Wooster — Data Scientist & Software Architect. Portfolio showcasing projects in data science, web development and tools."
+      content="Daniel Wooster: Computer Science &amp; AI student at the University of Nottingham, on a Data Science placement at LexisNexis Risk Solutions. Projects in agentic AI, compliance software and research tooling."
     />
-    <meta property="og:title" content="Daniel Wooster | Portfolio" />
+    <link rel="canonical" href="https://wo0.dev/" />
+    <meta property="og:title" content="Daniel Wooster | Comp Sci with AI student" />
     <meta
       property="og:description"
-      content="Portfolio of Daniel Wooster — Data Scientist & Software Architect. Projects, skills, and experience."
+      content="Comp Sci with AI student. Data Science placement at LexisNexis Risk Solutions. Projects, skills and experience."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/images/home-page.png" />
+    <meta property="og:url" content="https://wo0.dev/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Daniel Wooster | Computer Science &amp; AI student" />
+    <meta
+      name="twitter:description"
+      content="Comp Sci with AI student. Data Science placement at LexisNexis Risk Solutions."
+    />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,8 +32,10 @@
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
     <!-- Nav -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main">
       <div class="nav-content">
         <div class="logo">Daniel Wooster</div>
         <ul id="nav-links" class="nav-links">
@@ -42,441 +51,660 @@
       </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="hero" class="section hero-section" data-bg-color="#c8102e">
-      <div class="container">
-        <div class="hero-content">
-          <div class="label-number">BN 001</div>
-          <h1 class="hero-title">
-            <span class="title-line title-line-1">Daniel</span>
-            <span class="title-line title-line-2">Wooster</span>
-          </h1>
-          <div class="subtitle">
-            <span class="subtitle-text"
-              >Data Scientist & Software Architect</span
-            >
-          </div>
-          <div class="hero-meta">
-            <span class="meta-label">LONDON / NOTTINGHAM</span>
-            <span class="meta-separator">•</span>
-            <span class="meta-label">EST. 2004</span>
-            <span class="meta-separator">•</span>
-            <a
-              href="https://github.com/WO0O0O"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="meta-label"
-              >GITHUB</a
-            >
-            <span class="meta-separator">•</span>
-            <a
-              href="https://www.linkedin.com/in/daniel-wooster-32772b195/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="meta-label"
-              >LINKEDIN</a
-            >
-          </div>
-        </div>
-        <div class="halftone-overlay"></div>
-      </div>
-    </section>
-
-    <!-- about -->
-    <section id="about" class="section about-section" data-bg-color="#132a43">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-number">02</div>
-          <h2 class="section-title">ABOUT ME</h2>
-        </div>
-        <div class="about-content">
-          <div class="about-text">
-            <p class="lead-text">
-              I started programming after a period of travel and independent
-              study. I taught myself the fundamentals and became interested in
-              how code can turn ideas into working systems. Since then, I've
-              focused on building practical projects and steadily improving my
-              technical skills.
-            </p>
-            <p>
-              My projects are my discography, each one just as unique as the
-              next, solving problems I've encountered or ideas that I find
-              interesting. I thrive in environments where I can constantly learn
-              and grow.
-            </p>
-            <p>
-              When I'm not at the keyboard, you'll find me at the other keyboard
-              practicing piano or at the climbing wall (still stuck at v5).
-            </p>
-          </div>
-          <div class="about-stats">
-            <div class="stat-item">
-              <div class="stat-number">2023</div>
-              <div class="stat-label">Coding since</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">3</div>
-              <div class="stat-label">active projects</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">25+</div>
-              <div class="stat-label">Platinum trophies</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="section skills-section" data-bg-color="#c8102e">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-number">03</div>
-          <h2 class="section-title">SKILLS</h2>
-        </div>
-        <div class="piano-keyboard">
-          <div
-            class="piano-key"
-            data-skill="languages"
-            data-title="LANGUAGES"
-            data-skills="Python | Java | C | SQL | JS/TS"
-          >
-            <div class="key-label">C</div>
-          </div>
-          <div
-            class="piano-key"
-            data-skill="datascience"
-            data-title="DATA & ML"
-            data-skills="pandas | NumPy | Matplotlib | seaborn | Scikit-learn | TensorFlow"
-          >
-            <div class="key-label">D</div>
-          </div>
-          <div
-            class="piano-key"
-            data-skill="webdev"
-            data-title="WEB DEV"
-            data-skills="React | Flask | REST APIs | HTML/CSS"
-          >
-            <div class="key-label">E</div>
-          </div>
-          <div
-            class="piano-key"
-            data-skill="tools"
-            data-title="TOOLS & INFRA"
-            data-skills="Git | Figma | UNIX/Linux | Azure | Docker"
-          >
-            <div class="key-label">F</div>
-          </div>
-          <div class="piano-key piano-key-blank">
-            <div class="key-label">G</div>
-          </div>
-          <div class="piano-key piano-key-blank">
-            <div class="key-label">A</div>
-          </div>
-          <div class="piano-key piano-key-blank">
-            <div class="key-label">B</div>
-          </div>
-        </div>
-        <div class="skill-display">
-          <h3 class="skill-display-title">&nbsp;</h3>
-          <p class="skill-display-text">
-            Hover or click a key to see my skills
-          </p>
-        </div>
-        <div class="halftone-overlay"></div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section
-      id="projects"
-      class="section projects-section"
-      data-bg-color="#132a43"
-    >
-      <div class="container">
-        <div class="section-header">
-          <div class="section-number">04</div>
-          <h2 class="section-title">PROJECTS</h2>
-          <p class="section-subtitle">GREATEST HITS</p>
-        </div>
-        <div class="albums-grid">
-          <div class="album-card">
-            <div class="album-cover album-cover-img">
-              <img
-                src="assets/images/statify-mockup.png"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt="Statify application screenshot on laptop"
-              />
-            </div>
-            <div class="album-info">
-              <h3 class="album-name">Statify</h3>
-              <p class="album-description">
-                Developed a full-stack application using the Spotify Web API,
-                employing OAuth 2.0 for secure authentication and personalised
-                data retrieval. Created a dynamic React frontend component
-                featuring a stateful, interactive UI that allows users to filter
-                their top data by time range. Managed collaboratively using
-                GitHub for version control, code review and feature branching.
-              </p>
-              <div class="album-tags">
-                <span class="tag">React</span>
-                <span class="tag">Flask</span>
-                <span class="tag">Spotify API</span>
-              </div>
-              <div class="album-links">
-                <!-- VIEW LIVE link removed until site is hosted -->
-                <!-- <a href="not hosted yet" class="album-link">VIEW LIVE</a> -->
-                <a href="https://github.com/WO0O0O/Statify" class="album-link"
-                  >GITHUB</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="album-card">
-            <div class="album-cover album-cover-img">
-              <img
-                src="assets/images/kmeans-mockup.png"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt="K-means clustering model results on laptop"
-              />
-            </div>
-            <div class="album-info">
-              <h3 class="album-name">K-means donor segmentation model</h3>
-              <p class="album-description">
-                Engineered an unsupervised K-means clustering model on a donor
-                dataset to create 4 distinct segments, increasing targeting
-                efficiency for fundraising and donor retention. Delivered
-                actionable business insights through comprehensive data
-                visualisations, facilitating data-driven decision-making for the
-                nonprofit
-              </p>
-              <div class="album-tags">
-                <span class="tag">Python</span>
-                <span class="tag">pandas</span>
-                <span class="tag">NumPy</span>
-                <span class="tag">Matplotlib</span>
-                <span class="tag">Seaborn</span>
-                <span class="tag">Scikit-learn</span>
-              </div>
-              <div class="album-links">
-                <a
-                  href="https://github.com/WO0O0O/Kmeans-donor-model"
-                  class="album-link"
-                  >GITHUB</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="album-card">
-            <div class="album-cover album-cover-img">
-              <img
-                src="assets/images/monita-mockup.png"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt="Monita application screenshot on laptop"
-              />
-            </div>
-            <div class="album-info">
-              <h3 class="album-name">Monita</h3>
-              <p class="album-description">
-                A Website uptime monitoring tool that sends the user
-                notifications if their website is down along with the specific
-                error code. This was built as a side project to notify me if one
-                of my websites was down.
-              </p>
-              <div class="album-tags">
-                <span class="tag">React</span>
-                <span class="tag">Flask</span>
-              </div>
-              <div class="album-links">
-                <a href="https://github.com/WO0O0O/Monita" class="album-link"
-                  >GITHUB</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="halftone-overlay"></div>
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section
-      id="experience"
-      class="section experience-section"
-      data-bg-color="#c8102e"
-    >
-      <div class="container">
-        <div class="section-header">
-          <div class="section-number">05</div>
-          <h2 class="section-title">WORK EXPERIENCE</h2>
-          <p class="section-subtitle">PAST & PRESENT GIGS</p>
-        </div>
-        <div class="tour-dates">
-          <div class="tour-date">
-            <div class="date-left">
-              <div class="date-year">July 2026</div>
-              <div class="date-duration">PRESENT</div>
-            </div>
-            <div class="date-right">
-              <h3 class="venue-name">Lexis Nexis Risk Solutions</h3>
-              <div class="role-title">Data Science Placement</div>
-              <p class="role-description">start in July...</p>
-              <div class="role-tags">
-                <span class="tag">Python</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Snowflake</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="tour-date">
-            <div class="date-left">
-              <div class="date-year">June 2025</div>
-              <div class="date-duration">August 2025</div>
-            </div>
-            <div class="date-right">
-              <h3 class="venue-name">Footprints CEC</h3>
-              <div class="role-title">Support Engineer</div>
-              <ul class="role-description">
-                <li>
-                  Developed a K-Means clustering model for donor segmentation,
-                  with data cleaning, feature engineering and strategic
-                  visualisation of results for actionable insights.
-                </li>
-                <li>
-                  Implemented cloud-based solutions that included migrating the
-                  CRM from Salesforce to a cost-effective alternative,
-                  configuring Google Workspace/Meta Ads, and setting up a new
-                  e-commerce and event platform, resulting in over £300 in
-                  annual savings.
-                </li>
-                <li>
-                  Led a comprehensive data migration plan for the integration of
-                  a legacy database into a new Azure cloud environment, defining
-                  schemas and ETL processes to ensure data integrity and system
-                  scalability.
-                </li>
-              </ul>
-              <div class="role-tags">
-                <span class="tag">Database Migration</span>
-                <span class="tag">CRM Management</span>
-                <span class="tag">Web Development</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="tour-date">
-            <div class="date-left">
-              <div class="date-year">2020</div>
-              <div class="date-duration">2023</div>
-            </div>
-            <div class="date-right">
-              <h3 class="venue-name">Le Table D'Alix</h3>
-              <div class="role-title">Kitchen Porter</div>
-              <p class="role-description">
-                Washing dishes, cleaning the kitchen, and assisting the chefs.
-              </p>
-              <div class="role-tags">
-                <span class="tag">Caffeine addiction</span>
-                <span class="tag">Pain tolerance</span>
-                <span class="tag">Stoicism</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="halftone-overlay"></div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section
-      id="contact"
-      class="section contact-section"
-      data-bg-color="#132a43"
-    >
-      <div class="container">
-        <div class="section-header">
-          <div class="section-number">06</div>
-          <h2 class="section-title">CONTACT</h2>
-          <p class="section-subtitle">LET'S WORK TOGETHER</p>
-        </div>
-        <div class="contact-content">
-          <div class="contact-info">
-            <p class="contact-lead">
-              Available for freelance work, collaborations, and full-time
-              opportunities.
-            </p>
-            <div class="contact-methods">
-              <div
-                class="contact-method"
-                id="email-copy"
-                style="cursor: pointer"
-                onclick="
-                  navigator.clipboard
-                    .writeText('daniel@thewoosters.com')
-                    .then(() => {
-                      const label = this.querySelector('.method-label');
-                      label.textContent = 'COPIED!';
-                      setTimeout(() => (label.textContent = 'EMAIL'), 1500);
-                    })
-                "
+    <main id="main" tabindex="-1">
+      <!-- Hero -->
+      <section id="hero" class="section hero-section" data-bg-color="#c8102e">
+        <div class="container">
+          <div class="hero-content">
+            <div class="label-number">BN 001</div>
+            <h1 class="hero-title">
+              <span class="title-line title-line-1">Daniel</span>
+              <span class="title-line title-line-2">Wooster</span>
+            </h1>
+            <div class="subtitle">
+              <span class="subtitle-text"
+                >Computer Science with AI student. 
+                Data Science placement at
+                LexisNexis Risk Solutions</span
               >
-                <span class="method-label">EMAIL</span>
-                <span class="method-value">daniel@thewoosters.com</span>
-              </div>
+            </div>
+            <div class="hero-meta">
+              <span class="meta-label">LONDON / NOTTINGHAM</span>
+              <span class="meta-separator">•</span>
               <a
                 href="https://github.com/WO0O0O"
-                class="contact-method"
                 target="_blank"
+                rel="noopener noreferrer"
+                class="meta-label"
+                aria-label="Daniel Wooster on GitHub (opens in a new tab)"
+                >GITHUB</a
               >
-                <span class="method-label">GITHUB</span>
-                <span class="method-value">@WO0O0O</span>
-              </a>
+              <span class="meta-separator">•</span>
               <a
                 href="https://www.linkedin.com/in/daniel-wooster-32772b195/"
-                class="contact-method"
                 target="_blank"
+                rel="noopener noreferrer"
+                class="meta-label"
+                aria-label="Daniel Wooster on LinkedIn (opens in a new tab)"
+                >LINKEDIN</a
               >
-                <span class="method-label">LINKEDIN</span>
-                <span class="method-value">Daniel Wooster</span>
-              </a>
-              <a
-                href="https://open.spotify.com/user/d9woo?si=34fc9ded963d4b81"
-                class="contact-method"
-                target="_blank"
-              >
-                <span class="method-label">Spotify</span>
-                <span class="method-value">@d9woo</span>
-              </a>
             </div>
           </div>
-          <div class="contact-cta">
-            <div class="record-label">DW RECORDS</div>
-            <a href="Daniel_Wooster_CV.pdf" download class="stereo-badge"
-              >DOWNLOAD CV</a
-            >
+          <div class="halftone-overlay"></div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section about-section" data-bg-color="#132a43">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-number">02</div>
+            <h2 class="section-title">ABOUT ME</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-text">
+              <p class="lead-text">
+                I started programming after a period of travel and independent
+                study. I taught myself the fundamentals and became interested in
+                how code can turn ideas into working systems. Since then, I've
+                focused on building practical projects and steadily improving my
+                technical skills.
+              </p>
+              <p>
+                My projects are my discography, each one just as unique as the
+                next, solving problems I've encountered or ideas that I find
+                interesting. I thrive in environments where I can constantly
+                learn and grow.
+              </p>
+              <p>
+                When I'm not at the keyboard, you'll find me at the other
+                keyboard practising piano or at the climbing wall (still stuck
+                at v5).
+              </p>
+              <p class="about-edu">
+                <strong>Education:</strong> BSc Computer Science &amp; AI with
+                Year in Industry, University of Nottingham, 2024-2028. Year 2
+                average: 71% (first-class band).
+              </p>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item">
+                <div class="stat-number">2028</div>
+                <div class="stat-label">Degree ends</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">Jul 2026</div>
+                <div class="stat-label">Placement start</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Platinum trophies</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="halftone-overlay"></div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Skills -->
+      <section
+        id="skills"
+        class="section skills-section"
+        data-bg-color="#c8102e"
+      >
+        <div class="container">
+          <div class="section-header">
+            <div class="section-number">03</div>
+            <h2 class="section-title">SKILLS</h2>
+            <p class="section-subtitle">GROUPED BY WHERE I USED THEM</p>
+          </div>
+          <div class="piano-keyboard">
+            <button
+              type="button"
+              class="piano-key"
+              aria-pressed="false"
+              aria-controls="skill-display"
+              aria-label="Used at work"
+              data-title="WORK SPECIFIC"
+              data-skills="Python | SQL | Snowflake | Streamlit"
+              data-where='[["LexisNexis placement","#exp-lnrs"]]'
+            >
+              <span class="key-name" aria-hidden="true">Work Specific</span>
+              <span class="key-label" aria-hidden="true">C</span>
+            </button>
+            <button
+              type="button"
+              class="piano-key"
+              aria-pressed="false"
+              aria-controls="skill-display"
+              aria-label="AI &amp; agents"
+              data-title="AI &amp; AGENTS"
+              data-skills="LLM orchestration | Prompt engineering | Agentic workflows | MCP | Claude Code | Evaluation and reviewer patterns"
+              data-where='[["AGENTIC","#project-agentic"]]'
+            >
+              <span class="key-name" aria-hidden="true">AI &amp; agents</span>
+              <span class="key-label" aria-hidden="true">D</span>
+            </button>
+            <button
+              type="button"
+              class="piano-key"
+              aria-pressed="false"
+              aria-controls="skill-display"
+              aria-label="Data science &amp; analytics"
+              data-title="DATA SCIENCE &amp; ANALYTICS"
+              data-skills="pandas | NumPy | scikit-learn | matplotlib / seaborn | K-means segmentation | Statistics | TensorFlow | PyTorch"
+              data-where='[["Footprints CEC donor segmentation","#exp-footprints"]]'
+            >
+              <span class="key-name" aria-hidden="true"
+                >Data science &amp; analytics</span
+              >
+              <span class="key-label" aria-hidden="true">E</span>
+            </button>
+            <button
+              type="button"
+              class="piano-key"
+              aria-pressed="false"
+              aria-controls="skill-display"
+              aria-label="Engineering"
+              data-title="ENGINEERING"
+              data-skills="JS/TS | C | React | FastAPI | PostgreSQL | Supabase | Git | Linux"
+              data-where='[["Astora Risk","#project-astora"],["Titanite","#project-titanite"],["Blue Note Tuner","#project-bluenote"],["AGENTIC","#project-agentic"]]'
+            >
+              <span class="key-name" aria-hidden="true">Engineering</span>
+              <span class="key-label" aria-hidden="true">F</span>
+            </button>
+            <div class="piano-key piano-key-blank" aria-hidden="true">
+              <div class="key-label">G</div>
+            </div>
+            <div class="piano-key piano-key-blank" aria-hidden="true">
+              <div class="key-label">A</div>
+            </div>
+            <div class="piano-key piano-key-blank" aria-hidden="true">
+              <div class="key-label">B</div>
+            </div>
+          </div>
+          <div class="skill-display" id="skill-display">
+            <h3 class="skill-display-title">SKILL GROUPS</h3>
+            <p class="skill-display-text">
+              Hover or focus a key to preview. Click it, or press Enter, to lock
+              it and see where I used those skills.
+            </p>
+            <p class="skill-where" hidden></p>
+          </div>
+          <p class="sr-only" id="skill-status" role="status"></p>
+          <div class="halftone-overlay"></div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section
+        id="projects"
+        class="section projects-section"
+        data-bg-color="#132a43"
+      >
+        <div class="container">
+          <div class="section-header">
+            <div class="section-number">04</div>
+            <h2 class="section-title">PROJECTS</h2>
+            <p class="section-subtitle">GREATEST HITS</p>
+          </div>
+          <div class="albums-grid">
+            <!-- AGENTIC -->
+            <div class="album-card" id="project-agentic">
+              <div class="album-cover album-cover-svg">
+                <svg
+                  class="hier-svg"
+                  viewBox="0 0 300 300"
+                  role="group"
+                  aria-label="AGENTIC agent hierarchy diagram. Four nodes, L0 to L3. Select a node for its role and tool limits."
+                >
+                  <line class="hier-line" x1="150" y1="58" x2="150" y2="90" />
+                  <line class="hier-line" x1="150" y1="134" x2="150" y2="166" />
+                  <line
+                    class="hier-line hier-line-dashed"
+                    x1="150"
+                    y1="210"
+                    x2="150"
+                    y2="242"
+                  />
+                  <text class="hier-line-label" x="160" y="230">reviews</text>
+
+                  <g
+                    class="hier-node"
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
+                    aria-label="L0 Thrawn, system architect"
+                    data-node-title="L0 Thrawn"
+                    data-node-role="Audits and improves the agent system itself: workflows, context, handoffs and safety gates."
+                    data-node-tools="Tools: Read, Grep, Glob, Edit, Write, Bash, web search and fetch, Skill. Can call Droideka and Vader."
+                  >
+                    <rect x="30" y="14" width="240" height="44" rx="4" />
+                    <text x="44" y="42" class="hier-tag">L0</text>
+                    <text x="80" y="42">Thrawn: system architect</text>
+                  </g>
+                  <g
+                    class="hier-node"
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
+                    aria-label="L1 Vader, router"
+                    data-node-title="L1 Vader"
+                    data-node-role="Routes cross-domain tasks and sets priorities. Does not edit."
+                    data-node-tools="Tools: Read, Grep, Glob, web search and fetch. No Edit, Write or Bash. Can call the L2 agents and Droideka."
+                  >
+                    <rect x="30" y="90" width="240" height="44" rx="4" />
+                    <text x="44" y="118" class="hier-tag">L1</text>
+                    <text x="80" y="118">Vader: router, read-only</text>
+                  </g>
+                  <g
+                    class="hier-node"
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
+                    aria-label="L2 five domain agents"
+                    data-node-title="L2 Domain agents (five)"
+                    data-node-role="Career, SaaS, investing research, trading and language learning. Each agent owns one domain folder."
+                    data-node-tools="Tools: Read, Grep, Glob, Edit, Write, web search and fetch. Three also have Bash (SaaS, investing, trading). Each can call Droideka for review."
+                  >
+                    <rect x="30" y="166" width="240" height="44" rx="4" />
+                    <text x="44" y="194" class="hier-tag">L2</text>
+                    <text x="80" y="194">Five domain agents</text>
+                  </g>
+                  <g
+                    class="hier-node"
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
+                    aria-label="L3 Droideka, read-only reviewer"
+                    data-node-title="L3 Droideka"
+                    data-node-role="Read-only reviewer. Returns PASS, PASS WITH GAPS, FAIL or NEEDS EVIDENCE. A reviewer never grades its own output."
+                    data-node-tools="Tools: Read, Grep, Glob only. No Edit, Write or Bash."
+                  >
+                    <rect x="30" y="242" width="240" height="44" rx="4" />
+                    <text x="44" y="270" class="hier-tag">L3</text>
+                    <text x="80" y="270">Droideka: read-only reviewer</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="album-info">
+                <h3 class="album-name">AGENTIC</h3>
+                <p class="album-description">
+                  A personal operating system for planning and research:
+                  provider-neutral Markdown context plus eight Claude Code
+                  subagents in a four-layer hierarchy. Rules in the repository
+                  keep the reviewer agent read-only and stop agents from
+                  grading their own work. A correction log records agent
+                  mistakes. GitHub Actions checks for file structure, agent
+                  frontmatter and secrets are configured.
+                </p>
+                <div class="hier-detail" id="hier-detail" aria-live="polite">
+                  <h4 class="hier-detail-title">Hierarchy diagram</h4>
+                  <p class="hier-detail-role">
+                    Select a node to see its role and tool limits.
+                  </p>
+                  <p class="hier-detail-tools"></p>
+                </div>
+                <div class="album-tags">
+                  <span class="tag">Claude Code</span>
+                  <span class="tag">Subagents</span>
+                  <span class="tag">Markdown</span>
+                  <span class="tag">GitHub Actions</span>
+                </div>
+                <div class="album-links">
+                  <span class="album-private">Private repository</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Astora Risk -->
+            <div class="album-card" id="project-astora">
+              <div class="album-cover album-cover-svg">
+                <svg
+                  class="hub-svg"
+                  viewBox="0 0 300 300"
+                  role="img"
+                  aria-labelledby="astora-diagram-title"
+                >
+                  <title id="astora-diagram-title">
+                    Diagram: Astora Risk is the hub. Astora Grants is the first
+                    product built on it.
+                  </title>
+                  <line class="hub-line" x1="150" y1="150" x2="150" y2="232" />
+                  <circle class="hub-circle" cx="150" cy="104" r="64" />
+                  <text class="hub-title" x="150" y="106" text-anchor="middle">
+                    ASTORA RISK
+                  </text>
+                  <text class="hub-sub" x="150" y="128" text-anchor="middle">
+                    shared hub
+                  </text>
+                  <rect class="hub-box" x="60" y="232" width="180" height="46" rx="4" />
+                  <text class="hub-title hub-title-small" x="150" y="252" text-anchor="middle">
+                    ASTORA GRANTS
+                  </text>
+                  <text class="hub-sub" x="150" y="270" text-anchor="middle">
+                    first product
+                  </text>
+                </svg>
+              </div>
+              <div class="album-info">
+                <h3 class="album-name">Astora Risk</h3>
+                <p class="album-description">
+                  A hub for compliance tools that analyse financial
+                  transactions synced from accounting software (Xero and
+                  QuickBooks, via OAuth 2.0). A deterministic rules engine uses
+                  fuzzy string matching and confidence-scored heuristics to
+                  categorise transactions. The multi-tenant backend has token
+                  encryption, role-based access control and PDF and CSV report
+                  generation. Astora Grants is the first product built on it:
+                  it tracks UK charity restricted funds against grants and
+                  produces funder-ready reports.
+                </p>
+                <p class="album-status">
+                  In development. Looking for charities that need it.
+                </p>
+                <div class="album-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">FastAPI</span>
+                  <span class="tag">React</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">OAuth 2.0</span>
+                </div>
+                <div class="album-links">
+                  <span class="album-private">Private repository</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Titanite -->
+            <div class="album-card" id="project-titanite">
+              <div class="album-shots">
+                <figure>
+                  <a
+                    href="assets/images/titanite-signals.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open the full-size Titanite Signal Builder screenshot in a new tab. It shows a list of three master signals and an editor for a signal named Macro Tech Crash Warning, with four conditions on the 10-year Treasury yield, VIX, S&amp;P 500 and Warsh sentiment."
+                  >
+                    <img
+                      src="assets/images/titanite-signals.png"
+                      width="2940"
+                      height="1602"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Titanite Signal Builder screen: a list of three master signals and an editor for a signal named Macro Tech Crash Warning, with four conditions on the 10-year Treasury yield, VIX, S&amp;P 500 and Warsh sentiment."
+                    />
+                  </a>
+                  <figcaption>Signal Builder (click for full size)</figcaption>
+                </figure>
+                <figure>
+                  <a
+                    href="assets/images/titanite-intel.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open the full-size Titanite Intel Hub screenshot in a new tab. It shows a news feed with bullish, bearish and neutral tags and ticker badges, next to a Fed transition watch panel."
+                  >
+                    <img
+                      src="assets/images/titanite-intel.png"
+                      width="2940"
+                      height="1602"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Titanite Intel Hub screen: a news feed with bullish, bearish and neutral tags and ticker badges, next to a Fed transition watch panel."
+                    />
+                  </a>
+                  <figcaption>Intel Hub (click for full size)</figcaption>
+                </figure>
+                <p class="album-shots-note">Local build; some feeds mocked.</p>
+              </div>
+              <div class="album-info">
+                <h3 class="album-name">Titanite</h3>
+                <p class="album-description">
+                  A single-tenant, Bloomberg-style dashboard for tracking
+                  high-volatility tech stocks and macro risk signals. The Signal
+                  Builder composes Boolean rules from metrics such as EMA
+                  crosses, VIX, TNX and gold. The Intel Hub merges Finnhub and
+                  Google News RSS feeds. A Congress Tracker for US Senate and
+                  House stock disclosures is planned. A human-machine loop sends
+                  SEC filings and earnings transcripts through agentic LLM
+                  extraction, then a manual audit, before a conviction score and
+                  tier are set.
+                </p>
+                <p class="album-status">
+                  v1 built; 2.0 rebuild in progress, local-only.
+                </p>
+                <div class="album-tags">
+                  <span class="tag">Next.js</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">Finnhub</span>
+                  <span class="tag">Google News RSS</span>
+                </div>
+                <div class="album-links">
+                  <span class="album-private">Private repository</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Blue Note Tuner (compact) -->
+            <div class="album-card album-card-compact" id="project-bluenote">
+              <div class="album-info">
+                <h3 class="album-name">Blue Note Tuner</h3>
+                <p class="album-description">
+                  An iOS instrument tuner. Real-time pitch detection uses the YIN
+                  algorithm through AudioKit, with transposition offsets for
+                  Concert, Alto Sax, Tenor Sax and Trumpet. MVVM architecture.
+                </p>
+                <div class="album-tags">
+                  <span class="tag">Swift</span>
+                  <span class="tag">SwiftUI</span>
+                  <span class="tag">AudioKit</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="also-built">
+            Also built:
+            <a
+              href="https://github.com/WO0O0O/Statify"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Statify</a
+            >, a Spotify stats app (React, Flask, Spotify Web API).
+          </p>
+          <div class="halftone-overlay"></div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section
+        id="experience"
+        class="section experience-section"
+        data-bg-color="#c8102e"
+      >
+        <div class="container">
+          <div class="section-header">
+            <div class="section-number">05</div>
+            <h2 class="section-title">WORK EXPERIENCE</h2>
+            <p class="section-subtitle">PAST &amp; PRESENT GIGS</p>
+          </div>
+          <div class="tour-dates">
+            <div class="tour-date" id="exp-lnrs">
+              <div class="date-left">
+                <div class="date-year">July 2026</div>
+                <div class="date-duration">PRESENT</div>
+              </div>
+              <div class="date-right">
+                <h3 class="venue-name">LexisNexis Risk Solutions</h3>
+                <div class="role-title">
+                  Data Science Undergraduate Placement
+                </div>
+                <ul class="role-description">
+                  <li>
+                    Built workflow-specific agents for the team, including a
+                    Streamlit-specific agent and a presentation agent, and
+                    helped optimise the AI workflow by improving the efficiency
+                    of agent outputs to cut cost and credit use.
+                  </li>
+                  <li>
+                    Analysed client data with Python and SQL in Snowflake: client
+                    health checks, policy and rule evaluations, and complex
+                    fraud case studies.
+                  </li>
+                  <li>
+                    Worked across client organisations on policy optimisation,
+                    health checks, model updates and new feature additions.
+                  </li>
+                  <li>
+                    Built internal Streamlit applications and interactive
+                    Snowflake dashboards for fraud metrics and client data.
+                  </li>
+                </ul>
+                <div class="role-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">SQL</span>
+                  <span class="tag">Snowflake</span>
+                  <span class="tag">Streamlit</span>
+                  <span class="tag">Agentic workflows</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tour-date" id="exp-footprints">
+              <div class="date-left">
+                <div class="date-year">June 2025</div>
+                <div class="date-duration">August 2025</div>
+              </div>
+              <div class="date-right">
+                <h3 class="venue-name">Footprints CEC</h3>
+                <div class="role-title">Systems Engineer Intern</div>
+                <ul class="role-description">
+                  <li>
+                    Developed a K-means clustering model for donor segmentation,
+                    with data cleaning, feature engineering and visualisation of
+                    the results.
+                  </li>
+                  <li>
+                    Removed over £300 in annual SaaS overhead by migrating the
+                    CRM from Salesforce, configuring Google Workspace and Meta
+                    Ads, and deploying a new e-commerce and event platform.
+                  </li>
+                </ul>
+                <div class="role-tags">
+                  <span class="tag">K-means clustering</span>
+                  <span class="tag">CRM migration</span>
+                  <span class="tag">Google Workspace</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="tour-divider"><span>Earlier</span></p>
+
+            <div class="tour-date">
+              <div class="date-left">
+                <div class="date-year">2020</div>
+                <div class="date-duration">2023</div>
+              </div>
+              <div class="date-right">
+                <h3 class="venue-name">Le Table D'Alix</h3>
+                <div class="role-title">Kitchen Porter</div>
+                <p class="role-description">
+                  Washing dishes, cleaning the kitchen, and assisting the chefs.
+                </p>
+                <div class="role-tags">
+                  <span class="tag">Caffeine addiction</span>
+                  <span class="tag">Pain tolerance</span>
+                  <span class="tag">Stoicism</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="halftone-overlay"></div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section
+        id="contact"
+        class="section contact-section"
+        data-bg-color="#132a43"
+      >
+        <div class="container">
+          <div class="section-header">
+            <div class="section-number">06</div>
+            <h2 class="section-title">CONTACT</h2>
+            <p class="section-subtitle">GET IN TOUCH</p>
+          </div>
+          <div class="contact-content">
+            <div class="contact-info">
+              <p class="contact-lead">
+                Get in touch about the projects above, data science or agentic
+                AI systems.
+              </p>
+              <div class="contact-methods">
+                <div class="contact-method">
+                  <span class="method-label">EMAIL</span>
+                  <span class="method-value">
+                    <a href="mailto:daniel@thewoosters.com" class="email-link"
+                      >daniel@thewoosters.com</a
+                    >
+                    <button
+                      type="button"
+                      class="copy-email"
+                      id="copy-email"
+                      data-email="daniel@thewoosters.com"
+                    >
+                      Copy
+                    </button>
+                    <span class="copy-status" id="copy-status" role="status"></span>
+                  </span>
+                </div>
+                <a
+                  href="https://github.com/WO0O0O"
+                  class="contact-method"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="method-label">GITHUB</span>
+                  <span class="method-value">@WO0O0O</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/daniel-wooster-32772b195/"
+                  class="contact-method"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="method-label">LINKEDIN</span>
+                  <span class="method-value">Daniel Wooster</span>
+                </a>
+                <a
+                  href="https://open.spotify.com/user/d9woo?si=34fc9ded963d4b81"
+                  class="contact-method"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="method-label">SPOTIFY</span>
+                  <span class="method-value">@d9woo</span>
+                </a>
+              </div>
+            </div>
+            <div class="contact-cta">
+              <div class="record-label">DW RECORDS</div>
+              <a href="Daniel_Wooster_CV.pdf" download class="stereo-badge"
+                >DOWNLOAD CV</a
+              >
+            </div>
+          </div>
+          <div class="halftone-overlay"></div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>
-          &copy; 2026 Daniel Wooster. All rights reserved. EVERYTHING is made by
-          myself.
-        </p>
-        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem">
+        <p>&copy; 2026 Daniel Wooster. All rights reserved.</p>
+        <p>Designed and built by Daniel Wooster, with AI assistance.</p>
+        <p class="footer-note">
           Music: "Halcón Infinitivo" by Milton Arias (Free Music Archive),
           licensed under CC BY-SA.
         </p>

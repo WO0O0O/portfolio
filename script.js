@@ -1,293 +1,330 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const sections = document.querySelectorAll(".section");
   const navLinks = document.querySelectorAll(".nav-links a");
+  const navContainer = document.getElementById("nav-links");
 
-  // Smooth scroll for nav links
+  // --- Mobile menu button (shown by CSS at 640px and below) ---
+  const menuBtn = document.createElement("button");
+  menuBtn.id = "mobile-menu-btn";
+  menuBtn.className = "mobile-menu-btn";
+  menuBtn.type = "button";
+  menuBtn.setAttribute("aria-controls", "nav-links");
+  menuBtn.setAttribute("aria-expanded", "false");
+  menuBtn.setAttribute("aria-label", "Open navigation menu");
+  menuBtn.textContent = "☰";
+  document.querySelector(".nav-content").appendChild(menuBtn);
+
+  function setMenuOpen(isOpen) {
+    navContainer.classList.toggle("mobile-open", isOpen);
+    menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    menuBtn.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu",
+    );
+  }
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = !navContainer.classList.contains("mobile-open");
+    setMenuOpen(isOpen);
+    if (isOpen) {
+      const firstLink = navContainer.querySelector("a");
+      if (firstLink) firstLink.focus();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navContainer.classList.contains("mobile-open")) {
+      setMenuOpen(false);
+      menuBtn.focus();
+    }
+  });
+
+  window.matchMedia("(min-width: 641px)").addEventListener("change", (e) => {
+    if (e.matches) setMenuOpen(false);
+  });
+
+  // --- Smooth scroll for nav links ---
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      const targetId = link.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
+      const targetSection = document.querySelector(link.getAttribute("href"));
+      if (!targetSection) return;
 
-      if (targetSection) {
-        targetSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-        try {
-          if (window.innerWidth <= 640) {
-            const navContainer = document.getElementById("nav-links");
-            const menuBtn = document.getElementById("mobile-menu-btn");
-            if (
-              navContainer &&
-              navContainer.classList.contains("mobile-open")
-            ) {
-              navContainer.classList.remove("mobile-open");
-              if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
-              // move focus back to the menu button so keyboard users aren't left on the link
-              if (menuBtn) menuBtn.focus();
-            }
-          }
-        } catch (err) {}
+      targetSection.scrollIntoView({
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+        block: "start",
+      });
+
+      if (navContainer.classList.contains("mobile-open")) {
+        setMenuOpen(false);
+        menuBtn.focus();
       }
     });
   });
 
-  const observerOptions = {
-    root: null,
-    rootMargin: "-50px",
-    threshold: 0.1,
-  };
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+  // --- Section reveal, background colour and active nav link ---
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
         entry.target.classList.add("active");
 
         const bgColor = entry.target.getAttribute("data-bg-color");
-        if (bgColor) {
-          document.body.style.backgroundColor = bgColor;
-        }
+        if (bgColor) document.body.style.backgroundColor = bgColor;
 
-        updateActiveNavLink(entry.target.id);
-      }
-    });
-  }, observerOptions);
+        navLinks.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${entry.target.id}`,
+          );
+        });
+      });
+    },
+    { root: null, rootMargin: "-50px", threshold: 0.1 },
+  );
+  sections.forEach((section) => sectionObserver.observe(section));
 
-  // Observe all sections
-  sections.forEach((section) => {
-    sectionObserver.observe(section);
-  });
-
-  function updateActiveNavLink(sectionId) {
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${sectionId}`) {
-        link.classList.add("active");
-      }
-    });
-  }
-
+  // --- Hero fade and halftone parallax (skipped for reduced motion) ---
   const heroSection = document.querySelector(".hero-section");
   const halftoneOverlay = document.querySelector(".halftone-overlay");
+  let scrollFrame = null;
 
-  window.addEventListener("scroll", () => {
-    if (heroSection) {
-      const scrolled = window.pageYOffset;
-      const heroHeight = heroSection.offsetHeight;
-
-      if (scrolled < heroHeight) {
-        const opacity = 1 - scrolled / heroHeight;
-        heroSection.style.opacity = opacity;
-
-        if (halftoneOverlay) {
-          halftoneOverlay.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
+  function updateHero() {
+    scrollFrame = null;
+    const scrolled = window.scrollY;
+    const heroHeight = heroSection.offsetHeight;
+    if (scrolled < heroHeight) {
+      heroSection.style.opacity = 1 - scrolled / heroHeight;
+      if (halftoneOverlay) {
+        halftoneOverlay.style.transform = `translateY(${scrolled * 0.3}px)`;
       }
     }
-  });
+  }
 
-  const animateOnScroll = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = "running";
-      }
-    });
-  };
+  if (heroSection) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (reduceMotion.matches || scrollFrame) return;
+        scrollFrame = window.requestAnimationFrame(updateHero);
+      },
+      { passive: true },
+    );
+    setTimeout(() => heroSection.classList.add("active"), 100);
+  }
 
-  const elementObserver = new IntersectionObserver(animateOnScroll, {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  });
-
-  const animatedElements = document.querySelectorAll(
-    ".piano-key, .album-card, .tour-date, .stat-item, .contact-method",
+  // --- Staggered entry animations start when elements scroll into view ---
+  const elementObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = "running";
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
   );
 
-  animatedElements.forEach((el) => {
-    el.style.animationPlayState = "paused";
-    elementObserver.observe(el);
-  });
+  document
+    .querySelectorAll(
+      ".piano-key, .album-card, .tour-date, .stat-item, .contact-method",
+    )
+    .forEach((el) => {
+      el.style.animationPlayState = "paused";
+      elementObserver.observe(el);
+    });
 
-  const pianoKeys = document.querySelectorAll(".piano-key");
-  const skillDisplay = document.querySelector(".skill-display");
+  // --- Skills keyboard ---
+  const skillKeys = document.querySelectorAll("button.piano-key");
   const skillTitle = document.querySelector(".skill-display-title");
   const skillText = document.querySelector(".skill-display-text");
+  const skillWhere = document.querySelector(".skill-where");
+  const skillStatus = document.getElementById("skill-status");
+  const defaultSkillTitle = skillTitle.textContent;
+  const defaultSkillText = skillText.textContent.trim();
   let lockedKey = null;
-  let pianoEngine = null; // Lazy load audio context
+  let pianoEngine = null; // created on first click (browsers need a user gesture)
 
-  function showSkill(key) {
-    const title = key.getAttribute("data-title");
-    const skills = key.getAttribute("data-skills");
-    if (skillTitle) skillTitle.textContent = title;
-    if (skillText) skillText.textContent = skills;
+  function showSkill(key, withLinks) {
+    skillTitle.textContent = key.dataset.title;
+    skillText.textContent = key.dataset.skills;
+    skillWhere.replaceChildren();
+
+    const places =
+      withLinks && key.dataset.where ? JSON.parse(key.dataset.where) : [];
+    if (places.length) {
+      skillWhere.append("Where used: ");
+      places.forEach(([label, href], i) => {
+        if (i > 0) skillWhere.append("; ");
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        skillWhere.appendChild(link);
+      });
+      skillWhere.hidden = false;
+    } else {
+      skillWhere.hidden = true;
+    }
   }
 
   function resetDisplay() {
-    if (skillTitle) skillTitle.innerHTML = "&nbsp;";
-    if (skillText)
-      skillText.textContent = "Hover or click a key to see the setlist";
+    skillTitle.textContent = defaultSkillTitle;
+    skillText.textContent = defaultSkillText;
+    skillWhere.hidden = true;
   }
 
-  pianoKeys.forEach((key) => {
-    key.addEventListener("mouseenter", () => {
-      showSkill(key);
-    });
+  function restoreDisplay() {
+    if (lockedKey) showSkill(lockedKey, true);
+    else resetDisplay();
+  }
 
-    key.addEventListener("mouseleave", () => {
-      if (lockedKey) {
-        showSkill(lockedKey);
-      } else {
-        resetDisplay();
-      }
-    });
+  skillKeys.forEach((key) => {
+    key.addEventListener("mouseenter", () => showSkill(key, false));
+    key.addEventListener("focus", () => showSkill(key, false));
+    key.addEventListener("mouseleave", restoreDisplay);
+    key.addEventListener("blur", restoreDisplay);
 
     key.addEventListener("click", () => {
-      if (!pianoEngine) {
-        pianoEngine = new PianoEngine();
+      if (!pianoEngine) pianoEngine = new PianoEngine();
+      if (!reduceMotion.matches) {
+        pianoEngine.play(key.querySelector(".key-label").textContent);
       }
 
-      // Play sound
-      const note = key.querySelector(".key-label").textContent;
-      pianoEngine.play(note);
-
-      if (key.classList.contains("locked")) {
+      if (lockedKey === key) {
+        key.classList.remove("locked");
+        key.setAttribute("aria-pressed", "false");
+        lockedKey = null;
+        resetDisplay();
+        skillStatus.textContent = "";
         return;
-      } else {
-        if (lockedKey) {
-          lockedKey.classList.remove("locked");
-        }
-        key.classList.add("locked");
-        lockedKey = key;
-        showSkill(key);
       }
+
+      if (lockedKey) {
+        lockedKey.classList.remove("locked");
+        lockedKey.setAttribute("aria-pressed", "false");
+      }
+      key.classList.add("locked");
+      key.setAttribute("aria-pressed", "true");
+      lockedKey = key;
+      showSkill(key, true);
+      skillStatus.textContent = `${key.dataset.title}: ${key.dataset.skills}`;
     });
   });
 
-  const createMobileMenu = () => {
-    if (window.innerWidth <= 640) {
-      const nav = document.querySelector(".navbar");
-      const navLinks = document.getElementById("nav-links");
+  // --- AGENTIC hierarchy diagram ---
+  const hierNodes = document.querySelectorAll(".hier-node");
+  const hierDetail = document.getElementById("hier-detail");
 
-      // Check if menu button already exists
-      if (!document.getElementById("mobile-menu-btn")) {
-        const menuBtn = document.createElement("button");
-        menuBtn.id = "mobile-menu-btn";
-        menuBtn.className = "mobile-menu-btn";
-        menuBtn.type = "button";
-        menuBtn.setAttribute("aria-controls", "nav-links");
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuBtn.setAttribute("aria-label", "Open navigation menu");
-        menuBtn.textContent = "☰";
-        menuBtn.style.cssText = `
-                    background: none;
-                    border: none;
-                    color: var(--cream);
-                    font-size: 2rem;
-                    cursor: pointer;
-                    display: block;
-                `;
+  if (hierDetail && hierNodes.length) {
+    const hierTitle = hierDetail.querySelector(".hier-detail-title");
+    const hierRole = hierDetail.querySelector(".hier-detail-role");
+    const hierTools = hierDetail.querySelector(".hier-detail-tools");
+    const hierDefault = {
+      title: hierTitle.textContent,
+      role: hierRole.textContent.trim(),
+    };
+    let activeNode = null;
 
-        nav.querySelector(".nav-content").appendChild(menuBtn);
+    const selectNode = (node) => {
+      if (activeNode) activeNode.setAttribute("aria-pressed", "false");
 
-        menuBtn.addEventListener("click", () => {
-          const isOpen = navLinks.classList.toggle("mobile-open");
-          menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-          if (isOpen) {
-            // move focus to first link for easier keyboard navigation
-            const firstLink = navLinks.querySelector("a");
-            if (firstLink) firstLink.focus();
-          } else {
-            menuBtn.focus();
-          }
-        });
-
-        window.addEventListener("resize", () => {
-          if (
-            window.innerWidth > 640 &&
-            navLinks.classList.contains("mobile-open")
-          ) {
-            navLinks.classList.remove("mobile-open");
-            menuBtn.setAttribute("aria-expanded", "false");
-          }
-        });
+      if (activeNode === node) {
+        activeNode = null;
+        hierTitle.textContent = hierDefault.title;
+        hierRole.textContent = hierDefault.role;
+        hierTools.textContent = "";
+        return;
       }
+
+      activeNode = node;
+      node.setAttribute("aria-pressed", "true");
+      hierTitle.textContent = node.dataset.nodeTitle;
+      hierRole.textContent = node.dataset.nodeRole;
+      hierTools.textContent = node.dataset.nodeTools;
+    };
+
+    hierNodes.forEach((node) => {
+      node.addEventListener("click", () => selectNode(node));
+      node.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          selectNode(node);
+        }
+      });
+    });
+  }
+
+  // --- Email: separate copy button; the mailto link is left alone ---
+  const copyBtn = document.getElementById("copy-email");
+  const copyStatus = document.getElementById("copy-status");
+  if (copyBtn && copyStatus) {
+    if (!navigator.clipboard) {
+      copyBtn.hidden = true;
     } else {
-      const navLinks = document.getElementById("nav-links");
-      const menuBtn = document.getElementById("mobile-menu-btn");
-      if (navLinks && navLinks.classList.contains("mobile-open")) {
-        navLinks.classList.remove("mobile-open");
-        if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
-      }
+      let resetTimer = null;
+      const say = (text) => {
+        copyStatus.textContent = text;
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => {
+          copyStatus.textContent = "";
+        }, 2000);
+      };
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard
+          .writeText(copyBtn.dataset.email)
+          .then(() => say("Copied"))
+          .catch(() => say("Copy failed. Use the link."));
+      });
     }
-  };
-
-  createMobileMenu();
-  window.addEventListener("resize", createMobileMenu);
-
-  let scrollTimeout;
-  window.addEventListener("scroll", () => {
-    if (scrollTimeout) {
-      window.cancelAnimationFrame(scrollTimeout);
-    }
-
-    scrollTimeout = window.requestAnimationFrame(() => {});
-  });
-
-  setTimeout(() => {
-    const heroSection = document.querySelector(".hero-section");
-    if (heroSection) {
-      heroSection.classList.add("active");
-    }
-  }, 100);
+  }
 });
-
-document.body.style.transition =
-  "background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1)";
 
 class VinylPlayer {
   constructor() {
     this.audio = new Audio();
+    this.audio.preload = "none";
     this.audio.src = "assets/music/MiltonArias.mp3";
     this.audio.loop = true;
     this.isPlaying = false;
 
-    this.init();
-  }
-
-  init() {
     this.createPlayer();
-    this.attachEvents();
+    this.element.addEventListener("click", () => this.toggle());
   }
 
   createPlayer() {
-    const playerContainer = document.createElement("div");
-    playerContainer.className = "vinyl-player";
+    const player = document.createElement("button");
+    player.type = "button";
+    player.className = "vinyl-player";
+    player.setAttribute("aria-label", "Background music");
+    player.setAttribute("aria-pressed", "false");
 
-    const disc = document.createElement("div");
+    const disc = document.createElement("span");
     disc.className = "vinyl-disc";
+    disc.setAttribute("aria-hidden", "true");
 
-    playerContainer.appendChild(disc);
-    document.body.appendChild(playerContainer);
-
-    this.element = playerContainer;
+    player.appendChild(disc);
+    document.body.appendChild(player);
+    this.element = player;
   }
 
-  attachEvents() {
-    this.element.addEventListener("click", () => this.toggle());
+  setPlaying(isPlaying) {
+    this.isPlaying = isPlaying;
+    this.element.classList.toggle("playing", isPlaying);
+    this.element.setAttribute("aria-pressed", isPlaying ? "true" : "false");
   }
 
   toggle() {
     if (this.isPlaying) {
       this.audio.pause();
-      this.element.classList.remove("playing");
-    } else {
-      this.audio
-        .play()
-        .catch((e) => console.log("Audio file missing or blocked:", e));
-      this.element.classList.add("playing");
+      this.setPlaying(false);
+      return;
     }
-    this.isPlaying = !this.isPlaying;
+    // Playback can be blocked by the browser; only show "playing" if it starts.
+    this.audio
+      .play()
+      .then(() => this.setPlaying(true))
+      .catch(() => this.setPlaying(false));
   }
 }
 
@@ -321,7 +358,6 @@ class PianoEngine {
     gain.gain.linearRampToValueAtTime(0.3, this.ctx.currentTime + 0.02); // Attack
     gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1.5); // Decay
 
-    // Connect and play
     osc.connect(gain);
     gain.connect(this.ctx.destination);
 
@@ -330,5 +366,4 @@ class PianoEngine {
   }
 }
 
-// Initialise
-const vinylPlayer = new VinylPlayer();
+new VinylPlayer();
